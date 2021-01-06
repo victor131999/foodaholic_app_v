@@ -1,13 +1,13 @@
-class GeoLocation{
-  String longitud;
-  String latitud;
+class Special{
+  String name;
+  String cost;
 
-GeoLocation({this.longitud, this.latitud});
+Special({this.name, this.cost});
 
-GeoLocation.fromJsonMap(Map<dynamic, dynamic> json){
+Special.fromJsonMap(Map<dynamic, dynamic> json){
   if(json != null){
-    longitud = json['longitud'];
-    latitud = json['latitud'];
+    name = json['name'];
+    cost = json['cost'];
   }
 }
 }

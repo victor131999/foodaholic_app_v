@@ -15,18 +15,18 @@ class Reservations {
 }
 
 class Reservation {
-  String idreservation;
+  String idFood;
   String name;
   String cost;
 
   Reservation(
-      {this.idreservation,
+      {this.idFood,
       this.name,
       this.cost,});
 
   Reservation.fromJsonMap(Map<dynamic, dynamic> json) {
     if (json != null) {
-      idreservation = json['idreservation'];
+      idFood = json['idFood'];
       name = json['name'];
       cost = json['cost'];
     }

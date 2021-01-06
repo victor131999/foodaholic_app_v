@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodaholic_app_v/widgets/menu_widget.dart';
-import 'package:foodaholic_app_v/widgets/reservation_widget.dart';
+import 'package:foodaholic_app_v/widgets/form_widget.dart';
+import 'package:foodaholic_app_v/widgets/various_menu_widget.dart';
+import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -13,15 +14,21 @@ class _HomePageState extends State<HomePage> {
   final PageStorageBucket _bucket = PageStorageBucket();
   int _selectedIndex=0;
 
-  final List<String> _titles = ['Menú','Reservación'];
+  final List<String> _titles = [
+    'Inicio',
+    'Menú',
+    'Reservación'];
 
   final List<Widget> _pages = [
-    CurrentLocationWidget(
-      key: PageStorageKey('CurrentLocation'),
+    CurrentSpecialWidget(
+      key: PageStorageKey('special'),
     ),
-    ReservationWidget(
-      key: PageStorageKey('reservation'),
+    MainWidget(
+      key: PageStorageKey('main'),
     ),
+    FormWidget(
+      key: PageStorageKey('Form'),
+    )
   ];
 
 
@@ -44,6 +51,10 @@ class _HomePageState extends State<HomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.food_bank),
+            label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.food_bank_outlined),
             label: 'Menú',
           ),
           BottomNavigationBarItem(
@@ -59,4 +70,6 @@ class _HomePageState extends State<HomePage> {
     );
 
   }
+
+  
 }

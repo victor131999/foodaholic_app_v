@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/reservation_model.dart';
-import 'package:foodaholic_app_v/pages/reservation_page.dart';
+import 'package:foodaholic_app_v/pages/details_menu_page.dart';
 import 'package:foodaholic_app_v/providers/reservation_Service.dart';
 
-class ReservationWidget extends StatefulWidget {
-  ReservationWidget({Key key}) : super(key: key);
+class MainWidget extends StatefulWidget {
+  MainWidget({Key key}) : super(key: key);
 
   @override
   _ReservationsWidgetState createState() => _ReservationsWidgetState();
 }
 
-class _ReservationsWidgetState extends State<ReservationWidget> {
+class _ReservationsWidgetState extends State<MainWidget> {
   Reservations _list;
   ReservationsService _service;
 
@@ -45,7 +45,7 @@ class _ReservationsWidgetState extends State<ReservationWidget> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ReservationPage(idReservation: reservation.idreservation),
+              builder: (context) => DetailsPage(idFoodp: reservation.idFood),
             ));
       },
       child: Card(

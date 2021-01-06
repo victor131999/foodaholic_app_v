@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/widgets/text_styles_widget.dart';
 
-class CurrentLocationWidget extends StatelessWidget {
-  const CurrentLocationWidget({Key key}) : super(key: key);
+class CurrentSpecialWidget extends StatelessWidget {
+  const CurrentSpecialWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CurrentLocationWidget extends StatelessWidget {
               color: Colors.red,
             )  
           ),
-          TextStyles.labelLarge('Menú')
+          TextStyles.labelLarge('Varios menús')
         ],),
     );
   }

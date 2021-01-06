@@ -3,15 +3,15 @@ import 'package:foodaholic_app_v/models/reservation_model.dart';
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/providers/reservation_service.dart';
 
-class ReservationPage extends StatefulWidget {
-  final String idReservation;
-  ReservationPage({Key key, @required this.idReservation}) : super(key: key);
+class DetailsPage extends StatefulWidget {
+  final String idFoodp;
+  DetailsPage({Key key, @required this.idFoodp}) : super(key: key);
 
   @override
-  _ReservationPageState createState() => _ReservationPageState();
+  _DetailsPageState createState() => _DetailsPageState();
 }
 
-class _ReservationPageState extends State<ReservationPage> {
+class _DetailsPageState extends State<DetailsPage> {
   Reservation _currentReservation;
   ReservationsService _service;
 
@@ -40,6 +40,18 @@ class _ReservationPageState extends State<ReservationPage> {
                     Text(_currentReservation.name),
                     Text(_currentReservation.cost),
                     SizedBox(height: 550.0),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
+                    Text(_currentReservation.cost),
                   ]))
                 ],
               ));
@@ -54,16 +66,16 @@ class _ReservationPageState extends State<ReservationPage> {
           centerTitle: true,
           title: Text(title),
           background: FadeInImage(
-              placeholder: AssetImage("assets/images/latacunga.jpg"),
+              placeholder: AssetImage("assets/images/FoodaHolicNombre.jpg"),
               fadeInDuration: Duration(seconds: 2),
               image: NetworkImage(
-                  "https://dam.cocinafacil.com.mx/wp-content/uploads/2020/04/comida-china-tipica.jpg"),
+                  "https://i.pinimg.com/originals/87/b2/2b/87b22b0580a03bdc1b9304a207f86d69.jpg"),
               fit: BoxFit.cover),
         ));
   }
 
   _loadReservation() {
-    _service.getReservation(widget.idReservation).then((value) {
+    _service.getReservation(widget.idFoodp).then((value) {
       _currentReservation = value;
       print(_currentReservation);
       setState(() {});
