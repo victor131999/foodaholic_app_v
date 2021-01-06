@@ -42,6 +42,45 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      drawer: new Drawer(
+        
+      child: ListView(
+
+        children: <Widget>[
+          
+          new UserAccountsDrawerHeader(
+            
+              accountName: Text("Victor Cuyo",),
+              accountEmail: Text("vhcuyo@espe.edu.ec"),
+            decoration: BoxDecoration( 
+              
+              image: DecorationImage(
+                  image: AssetImage("assets/images/FoodaHolic.png"),
+                fit: BoxFit.cover
+              )
+            ),
+          ),
+          Ink(
+            color: Colors.redAccent,
+            child: new ListTile(
+              title: Text("Perfil"),
+            ),
+          ),
+          new ListTile(
+            title: Text("Información"),
+            onTap: (){},
+          ),
+          new ListTile(
+            title: Text("Salir"),
+          )
+
+        ],
+      ) ,
+    ),
+
+
+
       appBar: AppBar(
         backgroundColor: Colors.yellow,
         centerTitle: true,
@@ -62,7 +101,7 @@ class _HomePageState extends State<HomePage> {
     );
 
   }
-  
+
 }
 
 

@@ -66,7 +66,7 @@ class _DetailsPageState extends State<DetailsPage> {
           centerTitle: true,
           title: Text(title),
           background: FadeInImage(
-              placeholder: AssetImage("assets/images/FoodaHolicNombre.jpg"),
+              placeholder: AssetImage("assets/images/FoodaHolic.png"),
               fadeInDuration: Duration(seconds: 2),
               image: NetworkImage(
                   "https://i.pinimg.com/originals/87/b2/2b/87b22b0580a03bdc1b9304a207f86d69.jpg"),
