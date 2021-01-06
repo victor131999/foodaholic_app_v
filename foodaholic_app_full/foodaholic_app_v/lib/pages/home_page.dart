@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:foodaholic_app_v/widgets/form_widget.dart';
 import 'package:foodaholic_app_v/widgets/various_menu_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
@@ -47,29 +48,22 @@ class _HomePageState extends State<HomePage> {
         title: Text('FoodaHolic =>'+_titles[_selectedIndex]),
       ),
       body :PageStorage( bucket:_bucket, child: _pages[_selectedIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.food_bank),
-            label: 'Inicio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.food_bank_outlined),
-            label: 'Menú',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.food_bank_outlined),
-            label: 'Reservación',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.orange,
-        backgroundColor: Colors.yellow,
-        onTap: _onItemTapped,
+
+      bottomNavigationBar: ConvexAppBar(
+        items: [
+      TabItem(icon: Icons.home, title: 'Inicio'),
+      TabItem(icon: Icons.food_bank, title: 'Menús'),
+      TabItem(icon: Icons.food_bank_outlined, title: 'Reserva'),
+    ],
+    initialActiveIndex: _selectedIndex,
+    onTap: _onItemTapped,
+    backgroundColor: Colors.red,
       ),
     );
 
   }
-
   
 }
+
+
+
