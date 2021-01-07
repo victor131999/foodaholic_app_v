@@ -53,7 +53,7 @@ class _ReservationsWidgetState extends State<MainWidget> {
         shadowColor: Theme.of(context).primaryColorDark,
         child: ListTile(
             trailing: Icon(Icons.arrow_right),
-            leading: Icon(Icons.airport_shuttle),
+            leading: Icon(Icons.emoji_food_beverage_outlined),
             title: Text(reservation.name),
             subtitle: Text(reservation.cost ?? "")),
       ),
