@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodaholic_app_v/models/reservation_model.dart';
+import 'package:foodaholic_app_v/models/menu_model.dart';
 import 'package:foodaholic_app_v/pages/details_menu_page.dart';
 import 'package:foodaholic_app_v/providers/reservation_Service.dart';
 
@@ -7,18 +7,20 @@ class MainWidget extends StatefulWidget {
   MainWidget({Key key}) : super(key: key);
 
   @override
-  _ReservationsWidgetState createState() => _ReservationsWidgetState();
+  _MenusWidgetState createState() => _MenusWidgetState();
 }
 
-class _ReservationsWidgetState extends State<MainWidget> {
-  Reservations _list;
-  ReservationsService _service;
+class _MenusWidgetState extends State<MainWidget> {
+  final formKey = GlobalKey<FormState>();
+
+  Menus _list;
+  MenusService _service;
 
   @override
   void initState() {
-    _service = new ReservationsService();
+    _service = new MenusService();
     super.initState();
-    _loadReservations();
+    _loadMenus();
   }
 
   @override
@@ -27,36 +29,60 @@ class _ReservationsWidgetState extends State<MainWidget> {
         ? Center(child: Text("Cargando Servicio..."))
         : ListView(
             children: _list.items.map((e) {
-            return _getReservationItem(e);
+            return _getMenuItem(e);
           }).toList());
   }
 
-  _loadReservations() {
-    _service.getReservations(1, 10).then((value) {
+  _loadMenus() {
+    _service.getMenus(1, 10).then((value) {
       setState(() {
         _list = value;
       });
     });
   }
 
-  Widget _getReservationItem(Reservation reservation) {
+  Widget _getMenuItem(Menu menu) {
     return GestureDetector(
       onTap: () {
+        
         Navigator.push(
+          
             context,
             MaterialPageRoute(
-              builder: (context) => DetailsPage(idFoodp: reservation.idFood),
-            ));
+              builder: (context) => DetailsPage(idFoodp: menu.idFood),
+            )
+            );
+            
       },
+      
       child: Card(
         elevation: 2.0,
         shadowColor: Theme.of(context).primaryColorDark,
+        
         child: ListTile(
-            trailing: Icon(Icons.arrow_right),
+          
+            trailing: _getSubmitButton(),
             leading: Icon(Icons.emoji_food_beverage_outlined),
-            title: Text(reservation.name),
-            subtitle: Text(reservation.cost ?? "")),
+            title: Text(menu.name),
+            subtitle: Text(menu.cost ?? "")),
       ),
+      
     );
   }
+
+  Widget _getSubmitButton() {
+    return RaisedButton(
+        color: Colors.blueAccent,
+        textColor: Colors.white,
+        child: Text("Me gusta",style: TextStyle(fontSize: 10.0)),
+        onPressed: _submitForm
+    );
+  }
+
+  _submitForm() {
+    if (!formKey.currentState.validate()) return;
+
+    //Llamamos al servicio para guardar el Reservatione
+  }
+
 }

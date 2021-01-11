@@ -1,7 +1,7 @@
 
-import 'package:foodaholic_app_v/models/reservation_model.dart';
 import 'package:flutter/material.dart';
-import 'package:foodaholic_app_v/providers/reservation_service.dart';
+import 'package:foodaholic_app_v/models/menu_model.dart';
+import 'package:foodaholic_app_v/providers/reservation_Service.dart';
 
 class DetailsPage extends StatefulWidget {
   final String idFoodp;
@@ -12,20 +12,20 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  Reservation _currentReservation;
-  ReservationsService _service;
+  Menu _currentMenu;
+  MenusService _service;
 
   @override
   void initState() {
     super.initState();
-    _service = new ReservationsService();
-    _loadReservation();
+    _service = new MenusService();
+    _loadMenu();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: _currentReservation == null
+        body: _currentMenu == null
             ? Center(
                 child: Container(
                     height: 25.0,
@@ -33,25 +33,29 @@ class _DetailsPageState extends State<DetailsPage> {
                     child: CircularProgressIndicator()))
             : CustomScrollView(
                 slivers: [
-                  _appBar(_currentReservation.name),
+                  _appBar(_currentMenu.name),
                   SliverList(
                       delegate: SliverChildListDelegate([
                     SizedBox(height: 15.0),
-                    Text(_currentReservation.name),
-                    Text(_currentReservation.cost),
+                    Text(_currentMenu.name),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.description),
                     SizedBox(height: 550.0),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
-                    Text(_currentReservation.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.description),
+                    Text(_currentMenu.description),
+                    Text(_currentMenu.description),
+                    Text(_currentMenu.description),
+                    
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost),
                   ]))
                 ],
               ));
@@ -68,16 +72,15 @@ class _DetailsPageState extends State<DetailsPage> {
           background: FadeInImage(
               placeholder: AssetImage("assets/images/FoodaHolic.png"),
               fadeInDuration: Duration(seconds: 2),
-              image: NetworkImage(
-                  "https://i.pinimg.com/originals/87/b2/2b/87b22b0580a03bdc1b9304a207f86d69.jpg"),
+              image: NetworkImage(_currentMenu.image),
               fit: BoxFit.cover),
         ));
   }
 
-  _loadReservation() {
-    _service.getReservation(widget.idFoodp).then((value) {
-      _currentReservation = value;
-      print(_currentReservation);
+  _loadMenu() {
+    _service.getMenu(widget.idFoodp).then((value) {
+      _currentMenu = value;
+      print(_currentMenu);
       setState(() {});
     });
   }

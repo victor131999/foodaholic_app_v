@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     CurrentSpecialWidget(
       key: PageStorageKey('special'),
+      
     ),
     MainWidget(
       key: PageStorageKey('main'),
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      drawer: new Drawer(
+      drawer: new Drawer(//navigation drawer
         
       child: ListView(
 
@@ -83,8 +84,9 @@ class _HomePageState extends State<HomePage> {
 
       appBar: AppBar(
         backgroundColor: Colors.yellow,
+        
         centerTitle: true,
-        title: Text('FoodaHolic =>'+_titles[_selectedIndex]),
+        title: Text(_titles[_selectedIndex]),
       ),
       body :PageStorage( bucket:_bucket, child: _pages[_selectedIndex]),
 
@@ -101,6 +103,8 @@ class _HomePageState extends State<HomePage> {
     );
 
   }
+
+  
 
 }
 
