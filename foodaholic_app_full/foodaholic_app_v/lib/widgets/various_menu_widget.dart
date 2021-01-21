@@ -19,8 +19,8 @@ class CurrentSpecialWidget extends StatelessWidget {
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Shawarma_%283157609887%29.jpg/1200px-Shawarma_%283157609887%29.jpg',
       'https://www.mrpollo.com.ec/images/articulos/2017/06/historia_2.jpg',
       'https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/elgranchef/O/Origen-de-las-papas-fitas-1.jpg',
-      'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-      'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+      'https://saposyprincesas.elmundo.es/wp-content/uploads/2017/01/comida-india-langostinos-tandoori.jpg',
+      'https://live.mrf.io/statics/i/ps/www.cocinacaserayfacil.net/wp-content/uploads/2019/11/Comida-china.jpg?width=1200&enable=upscale'
     ];
 
   final List<Widget> imageSliders = imgList.map((item) => Container(
@@ -106,5 +106,29 @@ class CurrentSpecialWidget extends StatelessWidget {
 
   }
 
+
+@override
+  Widget down(BuildContext context) {
+    return GridView.count(
+      // Create a grid with 2 columns. If you change the scrollDirection to
+      // horizontal, this would produce 2 rows.
+      crossAxisCount: 2,
+      // Generate 100 Widgets that display their index in the List
+      children: List.generate(100, (index) {
+        return Center(
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey, width: 3.0),
+            ),
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Item $index',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ),
+        );
+      }),
+    );
+  }
 
 }
