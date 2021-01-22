@@ -1,33 +1,41 @@
 import 'dart:convert';
 
-Reservation reservationFromJson(String str) => Reservation.fromJson(json.decode(str));
+Reservation reportFromJson(String str) => Reservation.fromJson(json.decode(str));
 
-String reservationToJson(Reservation data) => json.encode(data.toJson());
+String reportToJson(Reservation data) => json.encode(data.toJson());
 
 class Reservation {
   Reservation({
     this.idreservation,
     this.date,
     this.user,
+    this.type = 'VIP',
+    this.image,
     this.message,
   });
 
   String idreservation;
-  DateTime date;
+  String date;
   String user;
+  String type;
+  String image;
   String message;
 
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
         idreservation: json["idreservation"],
-        date: DateTime.parse(json["date"]),
+        date: json["date"],
         user: json["user"],
+        type: json["type"],
+        image: json["image"],
         message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
         "idreservation": idreservation,
-        "date": date.toIso8601String(),
+        "date": date,
         "user": user,
+        "type": type,
+        "image": image,
         "message": message,
       };
 }
