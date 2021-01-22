@@ -9,33 +9,41 @@ class Reservation {
     this.idreservation,
     this.date,
     this.user,
-    this.type = 'VIP',
-    this.image,
-    this.message,
+    this.email,
+    this.identity,
+    this.name,
+    this.phone,
+    this.totalperson
   });
 
   String idreservation;
   String date;
   String user;
-  String type;
-  String image;
-  String message;
+  String email;
+  String identity;
+  String name;
+  String phone;
+  String totalperson;
 
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(
         idreservation: json["idreservation"],
         date: json["date"],
         user: json["user"],
-        type: json["type"],
-        image: json["image"],
-        message: json["message"],
+        email: json["email"],
+        identity: json["identity"],
+        name: json["name"],
+        phone: json["phone"],
+        totalperson: json["totalperson"],
       );
 
   Map<String, dynamic> toJson() => {
         "idreservation": idreservation,
         "date": date,
         "user": user,
-        "type": type,
-        "image": image,
-        "message": message,
+        "email": email,
+        "identity": identity,
+        "name": name,
+        "phone": phone,
+        "totalperson": totalperson,
       };
 }

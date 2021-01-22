@@ -1,4 +1,4 @@
-List<String> typesReservation = ['VIP', 'Estandar'];
+List<String> typesReport = ['Sugerencia', 'Denuncia'];
 
 String urlRoot = "https://proyecto-delivery-typesc-9f79b.web.app/api";
 

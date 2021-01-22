@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:foodaholic_app_v/widgets/form_widget.dart';
+import 'package:foodaholic_app_v/widgets/form_reservation_widget.dart';
+import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/various_menu_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
 class HomePage extends StatefulWidget {
@@ -18,7 +19,8 @@ class _HomePageState extends State<HomePage> {
   final List<String> _titles = [
     'Inicio',
     'Menú',
-    'Reservación'];
+    'Reservación',
+    'Sugerencias y reportes'];
 
   final List<Widget> _pages = [
     CurrentSpecialWidget(
@@ -30,6 +32,9 @@ class _HomePageState extends State<HomePage> {
     ),
     FormWidget(
       key: PageStorageKey('Form'),
+    ),
+    FormReportWidget(
+      key: PageStorageKey('FormReport'),
     )
   ];
 
@@ -95,6 +100,7 @@ class _HomePageState extends State<HomePage> {
       TabItem(icon: Icons.home, title: 'Inicio'),
       TabItem(icon: Icons.food_bank, title: 'Menús'),
       TabItem(icon: Icons.food_bank_outlined, title: 'Reserva'),
+      TabItem(icon: Icons.report, title: 'Reporte'),
     ],
     initialActiveIndex: _selectedIndex,
     onTap: _onItemTapped,

@@ -11,6 +11,7 @@ import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
 
 class MenusService {
+  
   String _urlRoot = urlRoot;
   Map<String, String> _headers = {"Content-Type": "application/json"};
 
@@ -44,5 +45,7 @@ class MenusService {
     }
     final decodedData = json.decode(resp.body);
     return decodedData['secure_url'];
+    
   }
+  
 }

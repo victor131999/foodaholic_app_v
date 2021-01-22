@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/menu_model.dart';
-import 'package:foodaholic_app_v/providers/reservation_Service.dart';
+import 'package:foodaholic_app_v/providers/menu_Service.dart';
 
 class DetailsPage extends StatefulWidget {
   final String idFoodp;

@@ -136,7 +136,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:foodaholic_app_v/models/menu_model.dart';
-import 'package:foodaholic_app_v/providers/reservation_Service.dart';
+import 'package:foodaholic_app_v/providers/menu_Service.dart';
 
 class CurrentSpecialWidget extends StatefulWidget {
   CurrentSpecialWidget({Key key}) : super(key: key);
