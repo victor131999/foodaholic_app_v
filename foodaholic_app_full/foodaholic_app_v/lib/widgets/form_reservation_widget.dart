@@ -25,6 +25,7 @@ class _InputTextState extends State<InputText> {
     return TextFormField(
       validator: widget.validator,
       style: TextStyle(
+
         color: Colors.white,
       ),
       decoration: InputDecoration(
@@ -51,17 +52,17 @@ class _FormWidgetState extends State<FormWidget> {
     Widget build(BuildContext context) {
     return SingleChildScrollView(
      child:  Container(
-        color: Colors.white38,
+        color: Colors.brown[100],
         padding:
             EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0, bottom: 15.0),
         child: Container(
-          color: Colors.blue,
+          color: Colors.orange[100],
           child: Card(
             elevation: 20.0,
-            color: Colors.lightBlue,
+            color: Colors.orange[100],
             child: Container(
               padding: EdgeInsets.only(
-                  left: 12.0, top: 12.0, right: 12.0, bottom: 12.0),
+                  left: 12.0, top: 12.0, right: 12.0, bottom: 100.0),
               child:Form(
                 key: formKey,
               child: Column(
@@ -71,8 +72,8 @@ class _FormWidgetState extends State<FormWidget> {
                   _getFieldPhone(),
                   _getFieldEmail(),
                   _getFieldTotalPerson(),
-                   _getSubmitButton()
-
+                   _getSubmitButton(),
+               
                 ],
               ),
               ),
@@ -87,9 +88,9 @@ class _FormWidgetState extends State<FormWidget> {
   Widget _getFieldName() {
     return TextFormField(
       initialValue: _reservation.name,
-      decoration: InputDecoration(labelText: "Nombre completo"),
-      maxLength: 255,
-      maxLines: 5,
+      decoration: InputDecoration(labelText: "Nombre completo",),
+      maxLength: 60,
+      maxLines: 1,
       onSaved: (value) {
         //Este evento se ejecuta cuando se cumple la validación y cambia el estado del Form
         _reservation.name = value;
@@ -108,8 +109,8 @@ class _FormWidgetState extends State<FormWidget> {
     return TextFormField(
       initialValue: _reservation.identity,
       decoration: InputDecoration(labelText: "Cédula"),
-      maxLength: 255,
-      maxLines: 5,
+      maxLength: 10,
+      maxLines: 1,
       onSaved: (value) {
         //Este evento se ejecuta cuando se cumple la validación y cambia el estado del Form
         _reservation.identity = value;
@@ -130,8 +131,8 @@ class _FormWidgetState extends State<FormWidget> {
       keyboardType: TextInputType.number,
       initialValue: _reservation.phone,
       decoration: InputDecoration(labelText: "Numero celular"),
-      maxLength: 255,
-      maxLines: 5,
+      maxLength: 15,
+      maxLines: 1,
       onSaved: (value) {
         //Este evento se ejecuta cuando se cumple la validación y cambia el estado del Form
         _reservation.phone = value;
@@ -150,8 +151,8 @@ class _FormWidgetState extends State<FormWidget> {
     return TextFormField(
       initialValue: _reservation.email,
       decoration: InputDecoration(labelText: "Email"),
-      maxLength: 255,
-      maxLines: 5,
+      maxLength: 40,
+      maxLines: 1,
       onSaved: (value) {
         //Este evento se ejecuta cuando se cumple la validación y cambia el estado del Form
         _reservation.email = value;
@@ -171,8 +172,8 @@ class _FormWidgetState extends State<FormWidget> {
       keyboardType: TextInputType.number,
       initialValue: _reservation.totalperson,
       decoration: InputDecoration(labelText: "Numero de personas"),
-      maxLength: 255,
-      maxLines: 5,
+      maxLength: 100,
+      maxLines: 1,
       onSaved: (value) {
         //Este evento se ejecuta cuando se cumple la validación y cambia el estado del Form
         _reservation.totalperson = value;
@@ -190,12 +191,13 @@ class _FormWidgetState extends State<FormWidget> {
   Widget _getSubmitButton() {
     return Container(
         color: Theme.of(context).buttonColor,
-        margin: EdgeInsets.symmetric(vertical: 10.0),
+        margin: EdgeInsets.symmetric(vertical: 20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(icon: Icon(Icons.send), onPressed: _submitForm)
+            IconButton(icon: Icon(Icons.save), onPressed: _submitForm)
           ],
+          
         ));
   }
 
@@ -214,9 +216,11 @@ class _FormWidgetState extends State<FormWidget> {
         formKey.currentState.reset();
         Scaffold.of(context).showSnackBar(
           SnackBar(content: Text(value.text)),
+          
         );
       }
     });
   }
+
 
 }

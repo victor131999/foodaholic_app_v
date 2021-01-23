@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     FormReportWidget(
       key: PageStorageKey('FormReport'),
     )
+
   ];
 
 
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      
       drawer: new Drawer(//navigation drawer
         
       child: ListView(
@@ -68,49 +69,57 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Ink(
-            color: Colors.redAccent,
+            color: Colors.orange[200],
             child: new ListTile(
               title: Text("Perfil"),
+              onTap: (){},
             ),
           ),
-          new ListTile(
-            title: Text("Información"),
-            onTap: (){},
+           Ink(
+            color: Colors.orange[200],
+            child: new ListTile(
+              title: Text("Información"),
+              onTap: (){},
+            ),
           ),
-          new ListTile(
-            title: Text("Salir"),
-          )
-
+           Ink(
+            color: Colors.orange[200],
+            child: new ListTile(
+              title: Text("Salir"),
+              onTap: (){},
+            ),
+          ),
         ],
       ) ,
     ),
 
-
-
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        
         centerTitle: true,
         title: Text(_titles[_selectedIndex]),
       ),
-      body :PageStorage( bucket:_bucket, child: _pages[_selectedIndex]),
+      body :PageStorage(
+        
+         bucket:_bucket, 
+         child: _pages[_selectedIndex]
+         ),
 
       bottomNavigationBar: ConvexAppBar(
         items: [
       TabItem(icon: Icons.home, title: 'Inicio'),
       TabItem(icon: Icons.food_bank, title: 'Menús'),
       TabItem(icon: Icons.food_bank_outlined, title: 'Reserva'),
-      TabItem(icon: Icons.report, title: 'Reporte'),
+      TabItem(icon: Icons.report,title: 'Reporte'),
     ],
     initialActiveIndex: _selectedIndex,
     onTap: _onItemTapped,
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.deepOrange,
       ),
+      
     );
 
   }
 
-  
 
 }
 

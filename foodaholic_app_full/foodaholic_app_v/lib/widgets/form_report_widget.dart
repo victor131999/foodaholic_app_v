@@ -56,14 +56,14 @@ class _FormReportWidgetState extends State<FormReportWidget> {
     Widget build(BuildContext context) {
     return SingleChildScrollView(
      child:  Container(
-        color: Colors.white38,
+        color: Colors.brown[100],
         padding:
             EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0, bottom: 15.0),
         child: Container(
-          color: Colors.blue,
+          color: Colors.orange[100],
           child: Card(
             elevation: 20.0,
-            color: Colors.lightBlue,
+            color: Colors.orange[100],
             child: Container(
               padding: EdgeInsets.only(
                   left: 12.0, top: 12.0, right: 12.0, bottom: 12.0),
@@ -92,7 +92,7 @@ class _FormReportWidgetState extends State<FormReportWidget> {
       initialValue: _report.message,
       decoration: InputDecoration(labelText: "Mensaje"),
       maxLength: 255,
-      maxLines: 5,
+      maxLines: 7,
       onSaved: (value) {
         //Este evento se ejecuta cuando se cumple la validación y cambia el estado del Form
         _report.message = value;

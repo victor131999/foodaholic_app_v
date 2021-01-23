@@ -56,11 +56,10 @@ class _MenusWidgetState extends State<MainWidget> {
       },
       
       child: Card(
-        elevation: 2.0,
-        shadowColor: Theme.of(context).primaryColorDark,
+        elevation: 10.0,
+        color: Colors.blue[100],
         
         child: ListTile(
-          
             trailing: _getSubmitButton(),
             leading: Icon(Icons.emoji_food_beverage_outlined),
             title: Text(menu.name),
@@ -72,6 +71,7 @@ class _MenusWidgetState extends State<MainWidget> {
 
   Widget _getSubmitButton() {
     return RaisedButton(
+      elevation: 10.0,
         color: Colors.blueAccent,
         textColor: Colors.white,
         child: Text("Me gusta",style: TextStyle(fontSize: 10.0)),

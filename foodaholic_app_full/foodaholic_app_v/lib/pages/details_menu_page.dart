@@ -25,6 +25,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerScrimColor: Colors.red,
         body: _currentMenu == null
             ? Center(
                 child: Container(
@@ -32,33 +33,23 @@ class _DetailsPageState extends State<DetailsPage> {
                     width: 25.0,
                     child: CircularProgressIndicator()))
             : CustomScrollView(
+              
                 slivers: [
+                  
                   _appBar(_currentMenu.name),
                   SliverList(
-                      delegate: SliverChildListDelegate([
-                    SizedBox(height: 15.0),
-                    Text(_currentMenu.name),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.description),
-                    SizedBox(height: 550.0),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.description),
-                    Text(_currentMenu.description),
-                    Text(_currentMenu.description),
-                    Text(_currentMenu.description),
                     
+                   delegate: SliverChildListDelegate([       
+                    SizedBox(height: 15.0),
+                    Text( _currentMenu.name,style: TextStyle(fontSize: 50.0,color: Colors.amber[900])),
                     Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                    Text(_currentMenu.cost),
-                  ]))
+                    Text(_currentMenu.description),
+                  ]
+                  )
+                  )
                 ],
-              ));
+            )
+    );
   }
 
   Widget _appBar(String title) {
@@ -68,7 +59,7 @@ class _DetailsPageState extends State<DetailsPage> {
         expandedHeight: 200.0,
         flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
-          title: Text(title),
+          title: Text(title,style: TextStyle(color: Colors.deepOrange[100])),
           background: FadeInImage(
               placeholder: AssetImage("assets/images/FoodaHolic.png"),
               fadeInDuration: Duration(seconds: 2),
