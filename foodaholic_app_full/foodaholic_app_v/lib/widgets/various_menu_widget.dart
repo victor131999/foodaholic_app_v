@@ -24,7 +24,16 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
     _loadMenus();
   }
    int _current = 0;
-  
+  final List<String> nameList = [
+
+      'Hamburguesa',
+      'Tacos Mexicanos',
+      'Alitas BBQ',
+      'Papas a la francesa',
+      'Brochetas de camarones',
+      'Fideos japoneses',
+    ];
+
     final List<String> imgList = [
 
       'https://www.ecured.cu/images/4/40/Hamburguesa1.jpg',
@@ -44,23 +53,13 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
             EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0, bottom: 15.0),
         child: Container(
           color: Colors.orange[100],
-          child: Card(
-            elevation: 20.0,
-            color: Colors.orange[100],
-            child: Container(
-              padding: EdgeInsets.only(
-                  left: 12.0, top: 12.0, right: 12.0, bottom: 12.0),
-              child:Form(
-                key: formKey,
+          
                 child: PageView(
                   children: <Widget>[_carrucel(),_down()],
                 
                 )
               ),
             ),
-          ),
-        ),
-      ),
     );
     
     
@@ -103,11 +102,11 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
 
 
  _carrucel(){
-  final List<Widget> imageSliders = imgList.map((item) => Container(
+  final List<Widget> imageSliders = imgList.map((item)=> Container(
   child: Container(
     margin: EdgeInsets.all(5.0),
     child: ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      borderRadius: BorderRadius.all(Radius.circular(50.0)),
       child: Stack(
         children: <Widget>[
           Image.network(item, fit: BoxFit.cover, width: 1000.0),
@@ -126,13 +125,14 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
                   end: Alignment.topCenter,
                 ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              padding: EdgeInsets.symmetric(vertical: 60.0, horizontal: 30.0),
               child: Text(
-                'No. ${imgList.indexOf(item)} nombre',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
+                'Especial ${imgList.indexOf(item)}  ',
+                 style: TextStyle(
+                  color: Colors.amber,
+                  fontSize: 50.0,
                   fontWeight: FontWeight.bold,
+                  
                 ),
               ),
             ),
@@ -148,9 +148,6 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
   
 )).toList();
 
-    double _heigth=MediaQuery.of(context).size.height;
-    print("Altura: $_heigth");
-
     return Container(
       
       child: Column(
@@ -161,7 +158,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
             options: CarouselOptions(
               autoPlay: true,
               enlargeCenterPage: true,
-              aspectRatio: 2.0,
+              aspectRatio: 1.0,
               onPageChanged: (index, reason) {
                  {
                   _current = index;
@@ -178,9 +175,9 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
               int index = imgList.indexOf(url);
               return Container(
                 
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                width: 15.0,
+                height: 15.0,
+                margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 2.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _current == index
@@ -208,14 +205,14 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
       crossAxisCount: 2,
       // Generate 100 Widgets that display their index in the List
       children: List.generate(100, (index) {
-        return Center(
-          child: Container(
+        return Center(     
+          child: Container(       
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey, width: 3.0),
+              border: Border.all(color: Colors.grey, width: 6.0),
             ),
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Item $index',
+              'MENU $index',
               style: Theme.of(context).textTheme.headline5,
             ),
           ),

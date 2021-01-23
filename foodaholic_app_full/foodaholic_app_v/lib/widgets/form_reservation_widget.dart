@@ -107,6 +107,7 @@ class _FormWidgetState extends State<FormWidget> {
 
   Widget _getFieldIdentity() {
     return TextFormField(
+      keyboardType: TextInputType.number,
       initialValue: _reservation.identity,
       decoration: InputDecoration(labelText: "Cédula"),
       maxLength: 10,
