@@ -25,6 +25,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Colors.orange[100],
       drawerScrimColor: Colors.red,
         body: _currentMenu == null
             ? Center(

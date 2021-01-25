@@ -42,7 +42,10 @@ class _MenusWidgetState extends State<MainWidget> {
   }
 
   Widget _getMenuItem(Menu menu) {
-    return GestureDetector(
+    return Container(
+      color: Colors.brown[100],
+    child:GestureDetector(
+      
       onTap: () {
         
         Navigator.push(
@@ -57,16 +60,17 @@ class _MenusWidgetState extends State<MainWidget> {
       
       child: Card(
         elevation: 10.0,
-        color: Colors.blue[100],
+        color: Colors.orange[100],
         
         child: ListTile(
+          
             trailing: _getSubmitButton(),
             leading: Icon(Icons.emoji_food_beverage_outlined),
             title: Text(menu.name),
             subtitle: Text(menu.cost ?? "")),
       ),
       
-    );
+    ));
   }
 
   Widget _getSubmitButton() {
