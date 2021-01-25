@@ -36,7 +36,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
 
     final List<String> imgList = [
 
-      'https://www.ecured.cu/images/4/40/Hamburguesa1.jpg',
+      'https://d1uz88p17r663j.cloudfront.net/resized/1ab9dd088418a1c446377d024de0e3ca_HAMBURGUESA_1200_600.jpg',
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Shawarma_%283157609887%29.jpg/1200px-Shawarma_%283157609887%29.jpg',
       'https://www.mrpollo.com.ec/images/articulos/2017/06/historia_2.jpg',
       'https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/elgranchef/O/Origen-de-las-papas-fitas-1.jpg',
@@ -45,7 +45,42 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
     ];
 @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    double _heigth = MediaQuery.of(context).size.height;
+    print("Altura: $_heigth");
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(
+                height: _heigth * 0.25,
+                child: Container(
+                  
+                  child: _carrucel(),
+                )),
+                SizedBox(
+                height: _heigth * 0.8,
+                child: Container(
+                  
+                  child: _down(),
+                )),
+            /*Text("headline1", style: Theme.of(context).textTheme.headline1),
+            Text("headline2", style: Theme.of(context).textTheme.headline2),
+            Text("headline3", style: Theme.of(context).textTheme.headline3),
+            Text("headline4", style: Theme.of(context).textTheme.headline4),
+            Text("headline5", style: Theme.of(context).textTheme.headline5),
+            Text("headline6", style: Theme.of(context).textTheme.headline6),
+            Text("bodyText1", style: Theme.of(context).textTheme.bodyText1),
+            Text("bodyText2", style: Theme.of(context).textTheme.bodyText2),
+            Text("subtitle1", style: Theme.of(context).textTheme.subtitle1),
+            Text("subtitle2", style: Theme.of(context).textTheme.subtitle2),
+            Text("caption", style: Theme.of(context).textTheme.caption),*/
+          ],
+        ),
+      ),
+    );
+
+    //CODIGO PARA PONER UN DESLIZANTE
+   /* return Scaffold(
       
      body:  Container(
         color: Colors.brown[100],
@@ -60,7 +95,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
                 )
               ),
             ),
-    );
+    );*/
     
     
   }
@@ -106,7 +141,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
   child: Container(
     margin: EdgeInsets.all(5.0),
     child: ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       child: Stack(
         children: <Widget>[
           Image.network(item, fit: BoxFit.cover, width: 1000.0),
@@ -125,12 +160,12 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
                   end: Alignment.topCenter,
                 ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 60.0, horizontal: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
               child: Text(
                 'Especial ${imgList.indexOf(item)}  ',
                  style: TextStyle(
                   color: Colors.amber,
-                  fontSize: 50.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   
                 ),
@@ -158,7 +193,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
             options: CarouselOptions(
               autoPlay: true,
               enlargeCenterPage: true,
-              aspectRatio: 1.0,
+              aspectRatio: 2.30,
               onPageChanged: (index, reason) {
                  {
                   _current = index;
@@ -175,9 +210,9 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
               int index = imgList.indexOf(url);
               return Container(
                 
-                width: 15.0,
-                height: 15.0,
-                margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 2.0),
+                width: 8.0,
+                height: 8.0,
+                margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 2.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _current == index
