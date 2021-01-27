@@ -1,7 +1,23 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class CurrentLocationWidget extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+class CurrentLocationWidget extends StatefulWidget {
   const CurrentLocationWidget({Key key}) : super(key: key);
+
+  @override
+  _CurrentLocationWidgetState createState() => _CurrentLocationWidgetState();
+}
+
+class _CurrentLocationWidgetState extends State<CurrentLocationWidget> {
+ Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(-0.9577570609759557, -78.69691968848863),
+    zoom: 18,
+  );
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +44,17 @@ class CurrentLocationWidget extends StatelessWidget {
             ),
  
             Text("Ubicación:", style: Theme.of(context).textTheme.headline4),
+            Text("Calle Rafael Moralez y Antonio Jose de Sucre, a una cuadra del parque central", style: Theme.of(context).textTheme.headline6),
             SizedBox(
                 width: _width*0.90,
                 height: _heigth * 0.50,
-                child: Container(
-                  color: Colors.amber,
-                )
+                child: GoogleMap(
+                  mapType: MapType.hybrid,
+                  initialCameraPosition: _kGooglePlex,
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                  },
+                ),
             ),
             
             Text("Contactos:", style: Theme.of(context).textTheme.headline4),
