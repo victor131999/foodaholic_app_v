@@ -13,10 +13,10 @@ class CurrentSpecialWidget extends StatefulWidget {
 
 class _CurrentWidgetState extends State<CurrentSpecialWidget> {
   final formKey = GlobalKey<FormState>();
-  
+  List<Menu> _listAux = List();
   Menus _list;
   MenusService _service;
-
+  Size screenSize;
   @override
   void initState() {
     _service = new MenusService();
@@ -24,29 +24,12 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
     _loadMenus();
   }
    int _current = 0;
-  final List<String> nameList = [
 
-      'Hamburguesa',
-      'Tacos Mexicanos',
-      'Alitas BBQ',
-      'Papas a la francesa',
-      'Brochetas de camarones',
-      'Fideos japoneses',
-    ];
-
-    final List<String> imgList = [
-
-      'https://d1uz88p17r663j.cloudfront.net/resized/1ab9dd088418a1c446377d024de0e3ca_HAMBURGUESA_1200_600.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Shawarma_%283157609887%29.jpg/1200px-Shawarma_%283157609887%29.jpg',
-      'https://www.mrpollo.com.ec/images/articulos/2017/06/historia_2.jpg',
-      'https://img.vixdata.io/pd/jpg-large/es/sites/default/files/imj/elgranchef/O/Origen-de-las-papas-fitas-1.jpg',
-      'https://saposyprincesas.elmundo.es/wp-content/uploads/2017/01/comida-india-langostinos-tandoori.jpg',
-      'https://live.mrf.io/statics/i/ps/www.cocinacaserayfacil.net/wp-content/uploads/2019/11/Comida-china.jpg?width=1200&enable=upscale'
-    ];
 @override
   Widget build(BuildContext context) {
     double _heigth = MediaQuery.of(context).size.height;
     print("Altura: $_heigth");
+    screenSize = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
         child: Column(
@@ -90,7 +73,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
   }
   
 
-  Widget Name(BuildContext context) {
+ /*Name() {
     return  ListView(
             children: _list.items.map((e) {
             return _getNameItem(e);
@@ -98,23 +81,25 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
           );
   }
 
-@override
-  Widget ImageLink(BuildContext context) {
+
+  ImageLink() {
     return  ListView(
             children: _list.items.map((e) {
             return _getImageItem(e);
           }).toList()
           );
-  }
+  }*/
   _loadMenus() {
     _service.getMenus(1, 6).then((value) {
       setState(() {
         _list = value;
+        
+        
       });
     });
   }
 
-  Widget _getNameItem(Menu menu) {
+  /*Widget _getNameItem(Menu menu) {
     return 
             Text(menu.name);
   }
@@ -122,51 +107,51 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
   Widget _getImageItem(Menu menu) {
     return 
             Text(menu.image);
-  }
+  }*/
 
 
  _carrucel(){
-  final List<Widget> imageSliders = imgList.map((item)=> Container(
+  final List<Widget> carrouselItem = _list.items.map((item)=> Container(
   child: Container(
     margin: EdgeInsets.all(5.0),
     child: ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      child: Stack(
-        children: <Widget>[
-          Image.network(item, fit: BoxFit.cover, width: 1000.0),
-          Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(200, 0, 0, 0),
-                    Color.fromARGB(0, 0, 0, 0)
-                  ],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            child: Stack(
+              children: <Widget>[
+                Image.network(item.image, fit: BoxFit.cover, width: 1000.0),
+                Positioned(
+                  bottom: 0.0,
+                  left: 0.0,
+                  right: 0.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(200, 0, 0, 0),
+                          Color.fromARGB(0, 0, 0, 0)
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                    child: Text(
+                      'Especial ${_list.items.indexOf(item)+1} ${item.name}',
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-              child: Text(
-                'Especial ${imgList.indexOf(item)}  ',
-                 style: TextStyle(
-                  color: Colors.amber,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  
-                ),
-              ),
-            ),
+                
+              ],
+              
+            )
+            
           ),
-          
-        ],
-        
-      )
-      
-    ),
     
   ),
   
@@ -178,7 +163,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
         
         children: [
           CarouselSlider(
-            items: imageSliders,
+            items: carrouselItem,
             options: CarouselOptions(
               autoPlay: true,
               enlargeCenterPage: true,
@@ -195,8 +180,8 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
           Row(
             
             mainAxisAlignment: MainAxisAlignment.center,
-            children: imgList.map((url) {
-              int index = imgList.indexOf(url);
+            children: _list.items.map((url) {
+              int index = _list.items.indexOf(url);
               return Container(
                 
                 width: 8.0,
@@ -228,20 +213,23 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
       // horizontal, this would produce 2 rows.
       crossAxisCount: 2,
       // Generate 100 Widgets that display their index in the List
-      children: List.generate(100, (index) {
+      children:  _list.items.map( (item) {
         return Center(     
-          child: Container(       
+          child: Container( 
+            width: screenSize.width*0.48,   
+            height: screenSize.height*0.251,   
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey, width: 6.0),
             ),
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'MENU $index',
+              'Especial ${_list.items.indexOf(item)+1} ${item.name}',
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
         );
-      }),
+      }
+      ).toList(),
     );
   }
 
