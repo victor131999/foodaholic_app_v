@@ -13,7 +13,6 @@ class CurrentSpecialWidget extends StatefulWidget {
 
 class _CurrentWidgetState extends State<CurrentSpecialWidget> {
   final formKey = GlobalKey<FormState>();
-  List<Menu> _listAux = List();
   Menus _list;
   MenusService _service;
   Size screenSize;
@@ -28,9 +27,10 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
 @override
   Widget build(BuildContext context) {
     double _heigth = MediaQuery.of(context).size.height;
-    print("Altura: $_heigth");
     screenSize = MediaQuery.of(context).size;
-    return SingleChildScrollView(
+    return _list == null
+        ? Center(child: Text("Cargando menu..."))
+        :SingleChildScrollView(
       child: Container(
         child: Column(
           children: [
@@ -71,43 +71,14 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
     
     
   }
-  
 
- /*Name() {
-    return  ListView(
-            children: _list.items.map((e) {
-            return _getNameItem(e);
-          }).toList()
-          );
-  }
-
-
-  ImageLink() {
-    return  ListView(
-            children: _list.items.map((e) {
-            return _getImageItem(e);
-          }).toList()
-          );
-  }*/
   _loadMenus() {
     _service.getMenus(1, 6).then((value) {
       setState(() {
         _list = value;
-        
-        
       });
     });
   }
-
-  /*Widget _getNameItem(Menu menu) {
-    return 
-            Text(menu.name);
-  }
-
-  Widget _getImageItem(Menu menu) {
-    return 
-            Text(menu.image);
-  }*/
 
 
  _carrucel(){
@@ -165,6 +136,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
           CarouselSlider(
             items: carrouselItem,
             options: CarouselOptions(
+              viewportFraction: 0.90,
               autoPlay: true,
               enlargeCenterPage: true,
               aspectRatio: 2.30,
@@ -180,14 +152,14 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
           Row(
             
             mainAxisAlignment: MainAxisAlignment.center,
-            children: _list.items.map((url) {
-              int index = _list.items.indexOf(url);
+            children: _list.items.map((item) {
+              int index = _list.items.indexOf(item);
               return Container(
-                
                 width: 8.0,
                 height: 8.0,
                 margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 2.0),
                 decoration: BoxDecoration(
+                  
                   shape: BoxShape.circle,
                   color: _current == index
                     ? Color.fromRGBO(0, 0, 0, 0.9)
@@ -209,10 +181,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
 
  _down() {
     return GridView.count(
-      // Create a grid with 2 columns. If you change the scrollDirection to
-      // horizontal, this would produce 2 rows.
       crossAxisCount: 2,
-      // Generate 100 Widgets that display their index in the List
       children:  _list.items.map( (item) {
         return Center(     
           child: Container( 
@@ -223,7 +192,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
             ),
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Especial ${_list.items.indexOf(item)+1} ${item.name}',
+              '${item.name}',
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
