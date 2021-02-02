@@ -3,8 +3,8 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:foodaholic_app_v/widgets/current_location_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_reservation_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
+import 'package:foodaholic_app_v/widgets/home_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile_widget.dart';
-import 'package:foodaholic_app_v/widgets/various_menu_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -25,8 +25,8 @@ class _HomePageState extends State<HomePage> {
     'Sugerencias y reportes'];
 
   final List<Widget> _pages = [
-    CurrentSpecialWidget(
-      key: PageStorageKey('special'),
+    MenusWidget(
+      key: PageStorageKey('Home'),
       
     ),
     MainWidget(
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     ),
     ProfileWidget(
       key: PageStorageKey('profile'),
-    )
+    ),
 
   ];
 
@@ -176,6 +176,7 @@ class _HomePageState extends State<HomePage> {
       )
     );
   }
+
   
 }
 

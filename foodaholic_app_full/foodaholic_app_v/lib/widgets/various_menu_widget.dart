@@ -32,14 +32,18 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
         ? Center(child: Text("Cargando menu..."))
         :SingleChildScrollView(
       child: Container(
+        color: Colors.orange[100],
         child: Column(
           children: [
-            SizedBox(
-                height: _heigth * 0.25,
-                child: Container(  
-                  child: _carrucel(),
-                )
-            ),
+            Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      child: _carrucel(),
+                      alignment: Alignment.center,
+                      height: 197,
+                      width: 600,    
+                    ),
+                  ),
             SizedBox(
                 height: _heigth * 0.8,
                 child: Container(
