@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodaholic_app_v/models/menu_model.dart';
-import 'package:foodaholic_app_v/providers/menu_Service.dart';
+import 'package:foodaholic_app_v/models/combo_model.dart';
+import 'package:foodaholic_app_v/providers/combo_Service.dart';
 
 class CombosWidget extends StatefulWidget {
   CombosWidget({Key key}) : super(key: key);
@@ -11,14 +11,14 @@ class CombosWidget extends StatefulWidget {
 
 class _CombosWidgetState extends State<CombosWidget> {
   final formKey = GlobalKey<FormState>();
-  Menus _list;
-  MenusService _service;
+  Combos _list;
+  CombosService _service;
   Size screenSize;
   @override
   void initState() {
-    _service = new MenusService();
+    _service = new CombosService();
     super.initState();
-    _loadMenus();
+    _loadCombos();
   }
 
 @override
@@ -26,16 +26,13 @@ class _CombosWidgetState extends State<CombosWidget> {
     double _heigth = MediaQuery.of(context).size.height;
     screenSize = MediaQuery.of(context).size;
     return _list == null
-        ? Center(child: Text("Cargando menu..."))
+        ? Center(child: Text("Cargando super combos..."))
         :SingleChildScrollView(
       child: Container(
         color: Colors.orange[100],
         child: Column(
           children: [
-            Card(
-                child: Container(  
-                  height: _heigth * 0.25,
-                  child: Text(
+            Title(color: Colors.amber, child: Text(
                         'Combos',
                         style: TextStyle(
                           fontSize: 54,
@@ -44,9 +41,7 @@ class _CombosWidgetState extends State<CombosWidget> {
                             ..strokeWidth = 4
                             ..color = Colors.black54,
                         ),
-                      ),
-                )
-            ),
+                      ),),
             SizedBox(
                 height: _heigth * 0.8,
                 child: Container(
@@ -79,8 +74,8 @@ class _CombosWidgetState extends State<CombosWidget> {
     
   }
 
-  _loadMenus() {
-    _service.getMenus(1, 6).then((value) {
+  _loadCombos() {
+    _service.getCombos(1, 100000).then((value) {
       setState(() {
         _list = value;
       });
@@ -100,7 +95,7 @@ class _CombosWidgetState extends State<CombosWidget> {
             ),
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              '${item.name}',
+              '${item.fusion}',
               style: Theme.of(context).textTheme.headline5,
             ),
           ),

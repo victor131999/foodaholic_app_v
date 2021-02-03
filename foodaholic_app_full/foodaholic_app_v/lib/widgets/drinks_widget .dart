@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:foodaholic_app_v/models/menu_model.dart';
-import 'package:foodaholic_app_v/providers/menu_Service.dart';
+import 'package:foodaholic_app_v/models/drink_model.dart';
+import 'package:foodaholic_app_v/providers/drink_Service.dart';
 
-class CurrentSpecialWidget extends StatefulWidget {
-  CurrentSpecialWidget({Key key}) : super(key: key);
+class DrinksWidget extends StatefulWidget {
+  DrinksWidget({Key key}) : super(key: key);
 
   @override
-  _CurrentWidgetState createState() => _CurrentWidgetState();
+  _DrinksWidgetState createState() => _DrinksWidgetState();
 }
 
-class _CurrentWidgetState extends State<CurrentSpecialWidget> {
+class _DrinksWidgetState extends State<DrinksWidget> {
   final formKey = GlobalKey<FormState>();
-  Menus _list;
-  MenusService _service;
+  Drinks _list;
+  DrinksService _service;
   Size screenSize;
   @override
   void initState() {
-    _service = new MenusService();
+    _service = new DrinksService();
     super.initState();
-    _loadMenus();
+    _loadDrinks();
   }
 
 @override
@@ -26,14 +26,14 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
     double _heigth = MediaQuery.of(context).size.height;
     screenSize = MediaQuery.of(context).size;
     return _list == null
-        ? Center(child: Text("Cargando menu..."))
+        ? Center(child: Text("Cargando bebidas..."))
         :SingleChildScrollView(
       child: Container(
         color: Colors.orange[100],
         child: Column(
           children: [
             Title(color: Colors.amber, child: Text(
-                        'Menú',
+                        'Bebidas',
                         style: TextStyle(
                           fontSize: 54,
                           foreground: Paint()
@@ -43,9 +43,9 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
                         ),
                       ),),
             SizedBox(
-                height: _heigth * 1,
+                height: _heigth * 0.8,
                 child: Container(
-                  child: varios(),
+                  child: _down(),
                 )
             ),
           ],
@@ -74,15 +74,15 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
     
   }
 
-  _loadMenus() {
-    _service.getMenus(1, 1000000).then((value) {
+  _loadDrinks() {
+    _service.getDrinks(1, 100000).then((value) {
       setState(() {
         _list = value;
       });
     });
   }
 
- varios() {
+ _down() {
     return GridView.count(
       crossAxisCount: 2,
       children:  _list.items.map( (item) {

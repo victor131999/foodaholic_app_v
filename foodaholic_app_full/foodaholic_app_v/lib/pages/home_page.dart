@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:foodaholic_app_v/widgets/current_location_widget.dart';
-import 'package:foodaholic_app_v/widgets/form_reservation_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile_widget.dart';
@@ -32,14 +31,11 @@ class _HomePageState extends State<HomePage> {
     MainWidget(
       key: PageStorageKey('main'),
     ),
-    FormWidget(
-      key: PageStorageKey('Form'),
-    ),
     FormReportWidget(
       key: PageStorageKey('FormReport'),
     ),
     CurrentLocationWidget(
-      key: PageStorageKey('location'),
+      key: PageStorageKey('information'),
     ),
     ProfileWidget(
       key: PageStorageKey('profile'),
@@ -136,8 +132,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: ConvexAppBar(
         items: [
           TabItem(icon: Icons.home, title: 'Inicio'),
-          TabItem(icon: Icons.food_bank, title: 'Menús'),
-          TabItem(icon: Icons.food_bank_outlined, title: 'Reserva'),
+          TabItem(icon: Icons.food_bank, title: 'Nutrición'),
           TabItem(icon: Icons.report,title: 'Reporte'),
         ],
         initialActiveIndex: _selectedIndex,
@@ -154,7 +149,7 @@ class _HomePageState extends State<HomePage> {
     return new Scaffold(
       appBar: AppBar(title: new Text("Perfil"),backgroundColor: Colors.yellow,),
       body: Center(
-        child:_pages[5]
+        child:_pages[4]
       )
     );
   }
@@ -163,7 +158,7 @@ class _HomePageState extends State<HomePage> {
     return new Scaffold(
       appBar: AppBar(title: new Text("Información"),backgroundColor: Colors.yellow),
       body: Center(
-        child: _pages[4]
+        child: _pages[3]
       )
     );
   }

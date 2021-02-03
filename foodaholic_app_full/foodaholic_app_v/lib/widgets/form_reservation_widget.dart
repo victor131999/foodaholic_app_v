@@ -62,7 +62,7 @@ class _FormWidgetState extends State<FormWidget> {
             color: Colors.orange[100],
             child: Container(
               padding: EdgeInsets.only(
-                  left: 12.0, top: 12.0, right: 12.0, bottom: 100.0),
+                  left: 12.0, top: 70.0, right: 12.0, bottom: 100.0),
               child:Form(
                 key: formKey,
               child: Column(
