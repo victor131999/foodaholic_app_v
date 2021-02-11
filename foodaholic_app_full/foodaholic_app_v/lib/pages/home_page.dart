@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:foodaholic_app_v/pages/settings_page.dart';
+import 'package:foodaholic_app_v/themes/theme_main.dart';
 import 'package:foodaholic_app_v/widgets/current_location_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
+import 'package:foodaholic_app_v/utils/utils.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -119,7 +122,31 @@ class _HomePageState extends State<HomePage> {
     ),
 
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        actions:  [
+            PopupMenuButton<MenuItem>(
+              onSelected: (value) {
+                if (value.key == "config") {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SettingsPage()));
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return mainActions.map((MenuItem option) {
+                  return PopupMenuItem<MenuItem>(
+                      value: option,
+                      child: Row(
+                        children: [
+                          Icon(option.icon,
+                              color: Theme.of(context).primaryColor),
+                          SizedBox(width: 14.0),
+                          Text(option.title)
+                        ],
+                      ));
+                }).toList();
+              },
+            ),
+          ],
+        backgroundColor: ThemeMain().primary,
         centerTitle: true,
         title: Text(_titles[_selectedIndex]),
       ),
@@ -127,7 +154,7 @@ class _HomePageState extends State<HomePage> {
         
          bucket:_bucket, 
          child: _pages[_selectedIndex]
-         ),
+      ),
 
       bottomNavigationBar: ConvexAppBar(
         items: [

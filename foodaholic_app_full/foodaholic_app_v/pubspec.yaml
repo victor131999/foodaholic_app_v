@@ -37,11 +37,15 @@ dependencies:
   mime_type: ^0.3.2
   google_maps_flutter: ^1.1.1
   geolocator: ^6.1.14
-
+  shared_preferences: ^0.5.12+4
+  provider: ^4.3.3
+  firebase_core: "0.7.0"
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.7.0"
+  
 
 flutter_icons:
   android: "launcher_icon"

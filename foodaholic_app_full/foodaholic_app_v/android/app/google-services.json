@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "727652031738",
+    "firebase_url": "https://proyecto-delivery-typesc-9f79b.firebaseio.com",
+    "project_id": "proyecto-delivery-typesc-9f79b",
+    "storage_bucket": "proyecto-delivery-typesc-9f79b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727652031738:android:ae1883174164439a89bd43",
+        "android_client_info": {
+          "package_name": "com.cuyo.nrc3738.foodaholic_app_v"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727652031738-bq97sb40gj7hmvjj4246ekf8627935hg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHz7714CHpSf_VfchGOXwAEeV2UGbqjAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727652031738-bq97sb40gj7hmvjj4246ekf8627935hg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

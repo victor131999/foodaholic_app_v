@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/menu_model.dart';
 import 'package:foodaholic_app_v/providers/menu_Service.dart';
+import 'package:foodaholic_app_v/themes/theme_main.dart';
 
 class DetailsPage extends StatefulWidget {
   final String idFoodp;
@@ -26,7 +27,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:  Colors.orange[100],
-      drawerScrimColor: Colors.red,
+      drawerScrimColor: ThemeMain().primary,
         body: _currentMenu == null
             ? Center(
                 child: Container(
@@ -55,7 +56,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
   Widget _appBar(String title) {
     return SliverAppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: ThemeMain().primary,
         pinned: true,
         expandedHeight: 200.0,
         flexibleSpace: FlexibleSpaceBar(

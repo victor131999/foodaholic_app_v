@@ -8,6 +8,7 @@ import 'form_reservation_widget.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.Dart';
+import 'package:foodaholic_app_v/themes/theme_main.dart';
 
 class MenusWidget extends StatefulWidget {
   MenusWidget({Key key}) : super(key: key);
@@ -320,7 +321,7 @@ int _current = 0;
 
   menus() {
     return new Scaffold(
-      appBar: AppBar(title: new Text("Menús"),backgroundColor: Colors.yellow,),
+      appBar: AppBar(title: new Text("Menús"),backgroundColor: ThemeMain().primary),
       body: Center(
         child:_pages[0]
       )
@@ -329,7 +330,7 @@ int _current = 0;
 
   drinks() {
     return new Scaffold(
-      appBar: AppBar(title: new Text("Bebidas"),backgroundColor: Colors.yellow,),
+      appBar: AppBar(title: new Text("Bebidas"),backgroundColor: ThemeMain().primary),
       body: Center(
         child:_pages[1]
       )
@@ -338,7 +339,7 @@ int _current = 0;
 
   combos() {
     return new Scaffold(
-      appBar: AppBar(title: new Text("Ofertas y combos"),backgroundColor: Colors.yellow),
+      appBar: AppBar(title: new Text("Ofertas y combos"),backgroundColor: ThemeMain().primary),
       body: Center(
         child: _pages[2]
       )
