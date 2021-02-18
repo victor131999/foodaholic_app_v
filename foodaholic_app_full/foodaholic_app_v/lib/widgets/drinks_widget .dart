@@ -27,7 +27,7 @@ class _DrinksWidgetState extends State<DrinksWidget> {
     double _heigth = MediaQuery.of(context).size.height;
     screenSize = MediaQuery.of(context).size;
     return _list == null
-        ? Center(child: Text("Cargando bebidas..."))
+        ? Center(child: Image.asset('assets/images/loading.gif'))
         :SingleChildScrollView(
       child: Container(
         color: ThemeMain().primaryfond,

@@ -61,7 +61,7 @@ int _current = 0;
     
     screenSize = MediaQuery.of(context).size;
     return _list == null
-        ? Center(child: Text("Cargando Opciones..."))
+        ? Center(child: Image.asset('assets/images/loading.gif'))
         :Container(
       child: options(),
     );
@@ -75,6 +75,7 @@ int _current = 0;
       body: Stack(
         children: <Widget>[
           Container(
+            child: load(),
             height: _heigth * 60,
             width: _width * 60,
             decoration: BoxDecoration(

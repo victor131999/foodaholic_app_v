@@ -16,15 +16,26 @@ class LoadTheme extends StatefulWidget {
 class _LoadThemeState extends State<LoadTheme> {  
 
   @override  Widget build(BuildContext context) {    
-    Size size = new Size(MediaQuery        
-    .of(context)        
-    .size        
-    .width, 300.0);    
+    Size size = new Size(MediaQuery.of(context).size.width, 900.0); 
   return new Scaffold(      
-    backgroundColor: ThemeMain().primaryfond,
+    backgroundColor: ThemeMain().buttonColor,
     body: new Stack(        
-      children: <Widget>[          
-        new ColorCurveBody(   size: size, xOffset: 1, yOffset: 1, color: ThemeMain().buttonColor),
+      children: <Widget>[     
+        new ColorCurveBody(size: size, xOffset: 1, yOffset: 250, color: ThemeMain().primaryfond),
+        /*Align(
+          alignment: Alignment.center,
+            child: Container(
+              alignment: Alignment.center,
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                color: ThemeMain().primaryAccent,
+                shape: BoxShape.circle,
+              ),
+              child: Image.asset('assets/images/loading.gif'),
+            )
+        ),*/
+
       ],      
     ),    
   );  

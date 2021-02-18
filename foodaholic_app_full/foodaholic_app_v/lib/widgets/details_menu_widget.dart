@@ -27,7 +27,7 @@ class _MenusWidgetState extends State<MainWidget> {
   @override
   Widget build(BuildContext context) {
     return _list == null
-        ? Center(child: Text("Cargando Servicio..."))
+        ? Center(child: Image.asset('assets/images/loading.gif'))
         : ListView(
             children: _list.items.map((e) {
             return _getMenuItem(e);
