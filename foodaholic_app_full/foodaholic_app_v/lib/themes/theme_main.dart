@@ -22,6 +22,10 @@ class ThemeMain {
   Color get primaryfond {
     return _primaryfond;
   }
+  Color get buttonColor {
+    return _buttonColor;
+  }
+
   static setup(bool mode) {
     return ThemeData(
         colorScheme: ColorScheme(

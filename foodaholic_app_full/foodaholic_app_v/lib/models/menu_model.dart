@@ -1,4 +1,3 @@
-
 class Menus {
   List<Menu> items = List();
 
@@ -38,6 +37,7 @@ class Menu {
       cost = json['cost'];
       description = json['description'];
       image = json['image'];
+      like = json['like'];
     }
   }
 }

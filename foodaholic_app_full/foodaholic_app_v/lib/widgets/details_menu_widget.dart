@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/menu_model.dart';
 import 'package:foodaholic_app_v/pages/details_menu_page.dart';
 import 'package:foodaholic_app_v/providers/menu_Service.dart';
+import 'package:foodaholic_app_v/themes/theme_main.dart';
 
 class MainWidget extends StatefulWidget {
   MainWidget({Key key}) : super(key: key);
@@ -34,7 +35,7 @@ class _MenusWidgetState extends State<MainWidget> {
   }
 
   _loadMenus() {
-    _service.getMenus(1, 10).then((value) {
+    _service.getMenus(1, 1000000000).then((value) {
       setState(() {
         _list = value;
       });
@@ -60,14 +61,13 @@ class _MenusWidgetState extends State<MainWidget> {
       
       child: Card(
         elevation: 10.0,
-        color: Colors.orange[100],
+        color: ThemeMain().primaryfond,
         
         child: ListTile(
-          
             trailing: _getSubmitButton(),
-            leading: Icon(Icons.emoji_food_beverage_outlined),
             title: Text(menu.name),
-            subtitle: Text(menu.cost ?? "")),
+            subtitle: Text(menu.cost ?? "")
+        ),
       ),
       
     ));
@@ -75,10 +75,11 @@ class _MenusWidgetState extends State<MainWidget> {
 
   Widget _getSubmitButton() {
     return RaisedButton(
-      elevation: 10.0,
-        color: Colors.blueAccent,
-        textColor: Colors.white,
-        child: Text("Me gusta",style: TextStyle(fontSize: 10.0)),
+        padding: const EdgeInsets.all(10.0),
+        splashColor: Colors.amber,
+        elevation: 0,
+        color: ThemeMain().primaryfond,
+        child:  Image.asset('assets/images/like.png'),
         onPressed: _submitForm
     );
   }

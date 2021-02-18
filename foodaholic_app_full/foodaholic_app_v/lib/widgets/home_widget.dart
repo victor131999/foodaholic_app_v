@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/menu_model.dart';
 import 'package:foodaholic_app_v/providers/menu_Service.dart';
+import 'package:foodaholic_app_v/themes/load_theme.dart';
 import 'combos_widget.dart';
 import 'drinks_widget .dart';
 import 'various_menu_widget.dart';
@@ -35,6 +36,9 @@ class _MenusWidgetState extends State<MenusWidget> {
     ),
     FormWidget(
       key: PageStorageKey('reservation'),
+    ),
+    LoadTheme(
+      key: PageStorageKey('load'),
     ),
 
 
@@ -355,6 +359,13 @@ int _current = 0;
     );
   }
 
+  load() {
+    return new Scaffold(
+      body: Center(
+        child: _pages[4]
+      )
+    );
+  }
 
 
 
