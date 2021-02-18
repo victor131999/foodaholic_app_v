@@ -74,7 +74,7 @@ int _current = 0;
             height: _heigth * 60,
             width: _width * 60,
             decoration: BoxDecoration(
-              color: Colors.orange[100],
+              color: ThemeMain().primaryfond,
             ),
           ),
           SafeArea(

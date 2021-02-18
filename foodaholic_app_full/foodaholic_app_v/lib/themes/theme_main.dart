@@ -6,6 +6,7 @@ class ThemeMain {
   static final _primaryDark = Colors.blue;
   static final _primaryAccent = Colors.amberAccent;
   static final _buttonColor = Colors.deepOrange;
+  static final _primaryfond = Colors.orange[100];
 
   Color get primary {
     return _primary;
@@ -18,7 +19,9 @@ class ThemeMain {
   Color get primaryAccent {
     return _primaryAccent;
   }
-
+  Color get primaryfond {
+    return _primaryfond;
+  }
   static setup(bool mode) {
     return ThemeData(
         colorScheme: ColorScheme(

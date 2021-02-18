@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/menu_model.dart';
 import 'package:foodaholic_app_v/providers/menu_Service.dart';
-
+import 'package:foodaholic_app_v/themes/theme_main.dart';
 class CurrentSpecialWidget extends StatefulWidget {
   CurrentSpecialWidget({Key key}) : super(key: key);
 
@@ -29,7 +29,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
         ? Center(child: Text("Cargando menu..."))
         :SingleChildScrollView(
       child: Container(
-        color: Colors.orange[100],
+        color: ThemeMain().primaryfond,
         child: Column(
           children: [
             Title(color: Colors.amber, child: Text(
@@ -43,7 +43,7 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
                         ),
                       ),),
             SizedBox(
-                height: _heigth * 1,
+                height: _heigth*0.8,
                 child: Container(
                   child: varios(),
                 )
@@ -91,12 +91,60 @@ class _CurrentWidgetState extends State<CurrentSpecialWidget> {
             width: screenSize.width*0.48,   
             height: screenSize.height*0.251,   
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey, width: 6.0),
+              border: Border.all(color: Colors.amber, width: 6.0),
             ),
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              '${item.name}',
-              style: Theme.of(context).textTheme.headline5,
+            padding: const EdgeInsets.all(0.0),
+            child: Stack(
+              children: <Widget>[
+                Image.network(item.image, fit: BoxFit.cover, width: 1000.0),
+                Positioned(
+                  bottom: 0.0,
+                  left: 0.0,
+                  right: 0.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(200, 0, 0, 0),
+                          Color.fromARGB(0, 0, 0, 0)
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 7.0, horizontal: 7.0),
+                    child: Text(
+                      '${item.name}',
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold, 
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.topRight,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 52,
+                        width: 52,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          '${item.cost}',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold, 
+                          ),
+                        ),
+                      )
+                ),
+              ],
+              
             ),
           ),
         );

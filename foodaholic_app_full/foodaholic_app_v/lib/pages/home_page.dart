@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.orange[100],
+      backgroundColor:ThemeMain().primaryfond,
       drawer: new Drawer(//navigation drawer
         
       child: ListView(
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Ink(
-            color: Colors.orange[200],
+            color: ThemeMain().primaryfond,
             child: new ListTile(
               title: Text("Tu perfil"),
               onTap: (){
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
            Ink(
-            color: Colors.orange[200],
+            color: ThemeMain().primaryfond,
             child: new ListTile(
               title: Text("Información del restaurante"),
               onTap: (){
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
            Ink(
-            color: Colors.orange[200],
+            color: ThemeMain().primaryfond,
             child: new ListTile(
               title: Text("Salir de tu cuenta"),
               onTap: (){
