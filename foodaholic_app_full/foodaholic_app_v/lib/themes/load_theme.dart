@@ -18,7 +18,7 @@ class _LoadThemeState extends State<LoadTheme> {
   @override  Widget build(BuildContext context) {    
     Size size = new Size(MediaQuery.of(context).size.width, 900.0); 
   return new Scaffold(      
-    backgroundColor: ThemeMain().buttonColor,
+    backgroundColor: ThemeMain().fondanime,
     body: new Stack(        
       children: <Widget>[     
         new ColorCurveBody(size: size, xOffset: 1, yOffset: 250, color: ThemeMain().primaryfond),
