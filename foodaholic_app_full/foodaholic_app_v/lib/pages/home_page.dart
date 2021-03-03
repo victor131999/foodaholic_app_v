@@ -183,7 +183,6 @@ class _HomePageState extends State<HomePage> {
 
   information() {
     return new Scaffold(
-      appBar: AppBar(title: new Text("Información"),backgroundColor: Colors.yellow),
       body: Center(
         child: _pages[3]
       )
