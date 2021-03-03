@@ -5,9 +5,10 @@ import 'package:foodaholic_app_v/themes/theme_main.dart';
 import 'package:foodaholic_app_v/widgets/current_location_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
-import 'package:foodaholic_app_v/widgets/profile_widget.dart';
+import 'package:foodaholic_app_v/widgets/profile/profile_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
 import 'package:foodaholic_app_v/utils/utils.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -174,7 +175,6 @@ class _HomePageState extends State<HomePage> {
  
   perfil() {
     return new Scaffold(
-      appBar: AppBar(title: new Text("Perfil"),backgroundColor: Colors.yellow,),
       body: Center(
         child:_pages[4]
       )
