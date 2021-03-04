@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:foodaholic_app_v/pages/settings_page.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
-import 'package:foodaholic_app_v/widgets/current_location_widget.dart';
+import 'package:foodaholic_app_v/widgets/information_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile/profile_widget.dart';
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     FormReportWidget(
       key: PageStorageKey('FormReport'),
     ),
-    CurrentLocationWidget(
+    InformationWidget(
       key: PageStorageKey('information'),
     ),
     ProfileWidget(
