@@ -7,7 +7,6 @@ import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile/profile_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
-import 'package:foodaholic_app_v/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -107,6 +106,20 @@ class _HomePageState extends State<HomePage> {
            Ink(
             color: ThemeMain().primaryfond,
             child: new ListTile(
+              title: Text("Configuración"),
+              onTap: (){
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => SettingsPage()
+                  )
+                );
+              },
+            ),
+          ),
+          Ink(
+            color: ThemeMain().primaryfond,
+            child: new ListTile(
               title: Text("Salir de tu cuenta"),
               onTap: (){
                 Navigator.of(context).pop();
@@ -123,30 +136,6 @@ class _HomePageState extends State<HomePage> {
     ),
 
       appBar: AppBar(
-        actions:  [
-            PopupMenuButton<MenuItem>(
-              onSelected: (value) {
-                if (value.key == "config") {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SettingsPage()));
-                }
-              },
-              itemBuilder: (BuildContext context) {
-                return mainActions.map((MenuItem option) {
-                  return PopupMenuItem<MenuItem>(
-                      value: option,
-                      child: Row(
-                        children: [
-                          Icon(option.icon,
-                              color: Theme.of(context).primaryColor),
-                          SizedBox(width: 14.0),
-                          Text(option.title)
-                        ],
-                      ));
-                }).toList();
-              },
-            ),
-          ],
         backgroundColor: ThemeMain().primary,
         centerTitle: true,
         title: Text(_titles[_selectedIndex]),
