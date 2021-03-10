@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/menu_model.dart';
+import 'package:foodaholic_app_v/models/menu_sqlite_model.dart';
 import 'package:foodaholic_app_v/providers/menu_Service.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
+import 'package:foodaholic_app_v/utils/database_utils.dart';
 
 class DetailsPage extends StatefulWidget {
   final String idFoodp;
@@ -15,12 +17,18 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   Menu _currentMenu;
   MenusService _service;
+  SMenu _smenu = SMenu();
+  final _formKey = GlobalKey<FormState>();
 
+  DatabaseHelper _dbHelper;
   @override
   void initState() {
     super.initState();
     _service = new MenusService();
     _loadMenu();
+      setState((){
+    _dbHelper = DatabaseHelper.instance;
+  });
   }
 
   @override
@@ -41,19 +49,25 @@ class _DetailsPageState extends State<DetailsPage> {
                   _appBar(_currentMenu.name),
                   SliverList(
                     
-                   delegate: SliverChildListDelegate([       
+                   delegate: SliverChildListDelegate([ 
+
+                           
                     SizedBox(height: 15.0),
                     Text( _currentMenu.name,style: TextStyle(fontSize: 50.0,color: Colors.amber[900])),
                     Text(_currentMenu.cost),
                     Text(_currentMenu.description),
+                    _form()
                   ]
                   )
-                  )
+                  ),
+
+                  
                 ],
-            )
+                
+            ),
     );
   }
-
+  
   Widget _appBar(String title) {
     return SliverAppBar(
         backgroundColor: ThemeMain().primary,
@@ -77,4 +91,51 @@ class _DetailsPageState extends State<DetailsPage> {
       setState(() {});
     });
   }
+    _form() => Container(
+    color: ThemeMain().primaryfond,
+    padding: EdgeInsets.symmetric(vertical:20,horizontal:30),
+    child:Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget> [
+            TextFormField(
+              decoration:  InputDecoration(labelText:  _currentMenu.name),
+              onSaved: (val) => setState(() => _smenu.name = _currentMenu.name),
+              validator: (val)=>(val.length!=0 ? 'El campo es obligatorio':null),
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText:  _currentMenu.cost),
+              onSaved: (val) => setState(() => _smenu.cost =  _currentMenu.cost),
+              validator: (val)=>(val.length!=0 ? 'El campo es obligatorio':null),
+            ),
+            TextFormField(
+              decoration:  InputDecoration(labelText:  _currentMenu.description),
+              onSaved: (val) => setState(() => _smenu.description =  _currentMenu.description),
+              validator: (val)=>(val.length!=0 ? 'El campo es obligatorio':null),
+            ),
+
+            
+            Container(
+              margin: EdgeInsets.all(100.0),
+              child:RaisedButton(
+              padding: const EdgeInsets.all(10.0),
+              splashColor: Colors.amber,
+              elevation: 0,
+              color: ThemeMain().primaryfond,
+              child:  Image.asset('assets/images/like.png'),
+              onPressed: ()=> _onSubmit(),
+          ),
+            )
+          ],
+        ),
+    )
+  );
+
+  _onSubmit() async{
+    var form = _formKey.currentState;
+    if(form.validate()){
+      form.save();
+      await _dbHelper.insertSMenu(_smenu);
+    }
+}
 }

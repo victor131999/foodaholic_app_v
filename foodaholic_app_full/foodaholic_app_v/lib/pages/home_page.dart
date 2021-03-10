@@ -5,6 +5,7 @@ import 'package:foodaholic_app_v/themes/theme_main.dart';
 import 'package:foodaholic_app_v/widgets/information_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
+import 'package:foodaholic_app_v/widgets/list_sqlite_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile/profile_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
 
@@ -42,6 +43,9 @@ class _HomePageState extends State<HomePage> {
     ),
     ProfileWidget(
       key: PageStorageKey('profile'),
+    ),
+    ListSqliteWidget(
+      key: PageStorageKey('listfavorites'),
     ),
 
   ];
@@ -98,6 +102,20 @@ class _HomePageState extends State<HomePage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) => information()
+                  )
+                );
+              },
+            ),
+          ),
+          Ink(
+            color: ThemeMain().primaryfond,
+            child: new ListTile(
+              title: Text("Favoritos"),
+              onTap: (){
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => favorites()
                   )
                 );
               },
@@ -183,6 +201,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: new Text("salir"),backgroundColor: Colors.yellow),
       body: Center(
         child: Text("salir")
+      )
+    );
+  }
+  favorites() {
+    return new Scaffold(
+      appBar: AppBar(title: new Text("Favoritos"),backgroundColor: Colors.yellow),
+      body: Center(
+        child: _pages[5]
       )
     );
   }
