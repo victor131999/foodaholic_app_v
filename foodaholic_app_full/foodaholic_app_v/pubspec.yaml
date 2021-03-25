@@ -44,6 +44,7 @@ dependencies:
   circular_profile_avatar: ^1.0.6
   sqflite: any
   path_provider : any
+  firebase_messaging: ^6.0.12
   
 dev_dependencies:
   flutter_test:

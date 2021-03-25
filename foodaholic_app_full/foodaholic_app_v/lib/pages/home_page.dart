@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:foodaholic_app_v/pages/settings_page.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
+import 'package:foodaholic_app_v/utils/utils.dart';
 import 'package:foodaholic_app_v/widgets/information_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
@@ -18,6 +22,61 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  
+    _getContent(Map<dynamic, dynamic> message) {
+    FCMNotification content = new FCMNotification();
+    if (Platform.isIOS) {
+      content.title = message['aps']['alert']['title'];
+      content.body = message['aps']['alert']['body'];
+      content.url = message['url'];
+    } else {
+      Map<dynamic, dynamic> notification = message['notification'];
+      Map<dynamic, dynamic> data = message['data'];
+      content.title = notification['title'];
+      content.body = notification['body'];
+      content.url = data['url'];
+    }
+    return content;
+  }
+    _goNotification(Map<dynamic, dynamic> message) {
+    FCMNotification content = _getContent(message);
+    if (content != null) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                title: Container(
+                    margin:
+                        EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                    child: Text(content.title)),
+                content: Container(
+                  margin: EdgeInsets.all(7.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                          margin: EdgeInsets.all(10.0),
+                          child: Text(content.body)),
+                      content.url == null
+                          ? Container()
+                          : Image.network(content.url)
+                    ],
+                  ),
+                ),
+                actions: [
+                  FlatButton(
+                    padding: EdgeInsets.zero,
+                    child: Text('Cerrar'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ]);
+          });
+    }
+  }
   final PageStorageBucket _bucket = PageStorageBucket();
   int _selectedIndex=0;
 
@@ -55,6 +114,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex=index;
     });
+    _configFCM();
   }
 
   @override
@@ -179,6 +239,28 @@ class _HomePageState extends State<HomePage> {
 
   }
 
+  void _iOSPermission() {
+    _firebaseMessaging.requestNotificationPermissions(
+        IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {});
+  }
+
+  _configFCM() {
+    if (Platform.isIOS) _iOSPermission();
+
+    _firebaseMessaging.configure(
+      onMessage: (Map<dynamic, dynamic> message) async {
+        _goNotification(message);
+      },
+      onResume: (Map<dynamic, dynamic> message) async {
+        _goNotification(message);
+      },
+      onLaunch: (Map<dynamic, dynamic> message) async {
+        _goNotification(message);
+      },
+    );
+  }
  
   perfil() {
     return new Scaffold(

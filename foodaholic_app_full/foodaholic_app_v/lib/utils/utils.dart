@@ -18,3 +18,11 @@ final List<MenuItem> mainActions = [
   MenuItem("config", "Configuración", Icons.settings),
   MenuItem("about", "Acerca de", Icons.info),
 ];
+
+class FCMNotification {
+  String title;
+  String body;
+  String url;
+
+  FCMNotification({this.title, this.body, this.url});
+}
