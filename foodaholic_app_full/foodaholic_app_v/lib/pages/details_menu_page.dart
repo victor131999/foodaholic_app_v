@@ -54,7 +54,7 @@ class _DetailsPageState extends State<DetailsPage> {
                            
                     SizedBox(height: 15.0),
                     Text( _currentMenu.name,style: TextStyle(fontSize: 50.0,color: Colors.amber[900])),
-                    Text(_currentMenu.cost),
+                    Text(_currentMenu.cost,style: TextStyle(fontSize: 30.0,color: ThemeMain().primaryDark)),
                     Text(_currentMenu.description),
                     _form()
                   ]
@@ -98,34 +98,36 @@ class _DetailsPageState extends State<DetailsPage> {
         key: _formKey,
         child: Column(
           children: <Widget> [
+             Container(
+              margin: EdgeInsets.all(100.0),
+              child:RaisedButton(
+                padding: const EdgeInsets.all(10.0),
+                splashColor: Colors.amber,
+                elevation: 0,
+                color: ThemeMain().primaryfond,
+                child:  Image.asset('assets/images/like.png'),
+                onPressed: ()=> _onSubmit(),
+              ),
+            ),
+            
             TextFormField(
-              decoration:  InputDecoration(labelText:  _currentMenu.name),
+              //decoration:  InputDecoration(labelText:  _currentMenu.name),
               onSaved: (val) => setState(() => _smenu.name = _currentMenu.name),
               validator: (val)=>(val.length!=0 ? 'El campo es obligatorio':null),
             ),
             TextFormField(
-              decoration: InputDecoration(labelText:  _currentMenu.cost),
+              //decoration: InputDecoration(labelText:  _currentMenu.cost),
               onSaved: (val) => setState(() => _smenu.cost =  _currentMenu.cost),
               validator: (val)=>(val.length!=0 ? 'El campo es obligatorio':null),
             ),
             TextFormField(
-              decoration:  InputDecoration(labelText:  _currentMenu.description),
+              //decoration:  InputDecoration(labelText:  _currentMenu.description),
               onSaved: (val) => setState(() => _smenu.description =  _currentMenu.description),
               validator: (val)=>(val.length!=0 ? 'El campo es obligatorio':null),
             ),
 
             
-            Container(
-              margin: EdgeInsets.all(100.0),
-              child:RaisedButton(
-              padding: const EdgeInsets.all(10.0),
-              splashColor: Colors.amber,
-              elevation: 0,
-              color: ThemeMain().primaryfond,
-              child:  Image.asset('assets/images/like.png'),
-              onPressed: ()=> _onSubmit(),
-          ),
-            )
+           
           ],
         ),
     )

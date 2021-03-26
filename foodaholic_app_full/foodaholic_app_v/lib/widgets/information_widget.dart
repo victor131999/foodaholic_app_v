@@ -33,7 +33,7 @@ class _InformationWidgetState extends State<InformationWidget>
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: ThemeMain().primary,
+        color: ThemeMain().primaryfond,
         child: Column(
           children: <Widget>[
             Container(
@@ -69,7 +69,7 @@ class _InformationWidgetState extends State<InformationWidget>
               offset: Offset(0, -24),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: ThemeMain().primaryfond,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 padding: EdgeInsets.all(20),
@@ -449,7 +449,7 @@ class _InformationWidgetState extends State<InformationWidget>
           Text(
             key,
             style: TextStyle(
-              color: Colors.grey[600],
+              color: Colors.red,
               height: 1,
             ),
           ),

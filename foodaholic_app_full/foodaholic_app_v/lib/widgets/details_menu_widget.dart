@@ -64,7 +64,8 @@ class _MenusWidgetState extends State<MainWidget> {
         color: ThemeMain().primaryfond,
         
         child: ListTile(
-            trailing: _getSubmitButton(),
+          leading:  Icon(Icons.food_bank_sharp),
+           // trailing: _getSubmitButton(),
             title: Text(menu.name),
             subtitle: Text(menu.cost ?? "")
         ),
@@ -73,7 +74,7 @@ class _MenusWidgetState extends State<MainWidget> {
     ));
   }
 
-  Widget _getSubmitButton() {
+ /* Widget _getSubmitButton() {
     return RaisedButton(
         padding: const EdgeInsets.all(10.0),
         splashColor: Colors.amber,
@@ -89,6 +90,6 @@ class _MenusWidgetState extends State<MainWidget> {
     //if (!formKey.currentState.validate()) return;
 
     //Llamamos al servicio para guardar el Reservatione
-  }
+  }*/
 
 }
