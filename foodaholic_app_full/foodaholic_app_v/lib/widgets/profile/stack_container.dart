@@ -1,16 +1,33 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:foodaholic_app_v/models/user_model.dart';
 import 'package:foodaholic_app_v/utils/custom_clipper.dart';
+import 'package:foodaholic_app_v/utils/preferences.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import 'top_bar.dart';
 
-class StackContainer extends StatelessWidget {
+class StackContainer extends StatefulWidget {
   const StackContainer({
     Key key,
   }) : super(key: key);
 
   @override
+  _StackContainerState createState() => _StackContainerState();
+}
+
+class _StackContainerState extends State<StackContainer> {
+User currentUser;
+final prefs = new Preferences();
+
+    void initState() {
+    super.initState();
+    _getUserValues();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    
     return Container(
       height: 300.0,
       child: Stack(
@@ -40,13 +57,11 @@ class StackContainer extends StatelessWidget {
                   radius: 60.0,
                 ),
                 SizedBox(height: 4.0),
-                Text(
-                  "Victor Cuyo",
-                  style: TextStyle(
-                    fontSize: 21.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text(currentUser == null
+                      ? ""
+                      : currentUser.name == null
+                          ? currentUser.email
+                          : currentUser.name),
                 Text(
                   "0987964252",
                   style: TextStyle(
@@ -62,4 +77,12 @@ class StackContainer extends StatelessWidget {
       ),
     );
   }
+
+      _getUserValues() {
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(prefs.token);
+    print(decodedToken);
+    currentUser = User.fromJsonMap(decodedToken);
+    setState(() {});
+  }
+  
 }

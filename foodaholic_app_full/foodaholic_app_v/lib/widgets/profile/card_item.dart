@@ -120,7 +120,7 @@ class _CardItemState extends State<CardItem> {
                       ? ""
                       : currentUser.name == null
                           ? currentUser.email
-                          : currentUser.name)),
+                          : currentUser.email)),
                   ],
                 ),
               ],

@@ -137,14 +137,20 @@ class _HomePageState extends State<HomePage> {
 
           new UserAccountsDrawerHeader(
             
-              accountName: Text("Victor Cuyo",),
-              accountEmail: Container(
+              accountName: Container(
                   margin: EdgeInsets.only(bottom: 14.0),
                   child: Text(currentUser == null
                       ? ""
                       : currentUser.name == null
                           ? currentUser.email
                           : currentUser.name)),
+              accountEmail: Container(
+                  margin: EdgeInsets.only(bottom: 14.0),
+                  child: Text(currentUser == null
+                      ? ""
+                      : currentUser.name == null
+                          ? currentUser.email
+                          : currentUser.email)),
             decoration: BoxDecoration( 
               
               image: DecorationImage(
