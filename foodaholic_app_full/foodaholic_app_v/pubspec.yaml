@@ -45,6 +45,8 @@ dependencies:
   sqflite: any
   path_provider : any
   firebase_messaging: ^6.0.12
+  rxdart: ^0.22.0  
+  jwt_decoder: ^1.0.4
   
 dev_dependencies:
   flutter_test:

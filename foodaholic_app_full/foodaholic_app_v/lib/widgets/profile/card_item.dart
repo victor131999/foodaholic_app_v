@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:foodaholic_app_v/models/user_model.dart';
+import 'package:foodaholic_app_v/pages/login_page.dart';
+import 'package:foodaholic_app_v/providers/content_provider.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
+import 'package:foodaholic_app_v/utils/preferences.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:provider/provider.dart';
 
-class CardItem extends StatelessWidget {
+class CardItem extends StatefulWidget {
   const CardItem({
     Key key,
   }) : super(key: key);
 
   @override
+  _CardItemState createState() => _CardItemState();
+}
+
+  final List<Widget> _pages = [
+    LoginPage(
+      key: PageStorageKey('Sesion'),   
+    ),
+  ];
+
+class _CardItemState extends State<CardItem> {
+  final prefs = new Preferences();
+  User currentUser;
+      @override
+  void initState() {
+    super.initState();
+    _getUserValues();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final prefs = new Preferences();
+    final _contentProvider = Provider.of<ContentProvider>(context);
     return Column(
     children:<Widget>[ 
         Padding(
@@ -87,13 +114,13 @@ class CardItem extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 4.0),
-                    Text(
-                      "vhcuyo@espe.edu.ec",
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        fontSize: 12.0,
-                      ),
-                    ),
+                    Container(
+                  margin: EdgeInsets.only(bottom: 14.0),
+                  child: Text(currentUser == null
+                      ? ""
+                      : currentUser.name == null
+                          ? currentUser.email
+                          : currentUser.name)),
                   ],
                 ),
               ],
@@ -145,8 +172,45 @@ class CardItem extends StatelessWidget {
             ),
           ),
         ),
-      )
+      ),
+      RaisedButton(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
+              child: Text('Salir de la cuenta'),
+            ),
+            textColor: Theme.of(context).primaryColorDark,
+            color: Theme.of(context).primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            onPressed: () {
+              prefs.token = "";
+              _contentProvider.token = prefs.token;
+              //setState(()=> {_session()});
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => _session()),
+                  );
+            },
+          )
+
     ]
     );
   }
+
+      _getUserValues() {
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(prefs.token);
+    print(decodedToken);
+    currentUser = User.fromJsonMap(decodedToken);
+    setState(() {});
+  }
+  
+  _session() {
+    return new Scaffold(
+      body: Center(
+        child:_pages[0]
+      )
+    );
+  }
+
 }

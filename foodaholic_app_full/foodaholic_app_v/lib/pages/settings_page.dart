@@ -38,7 +38,23 @@ class _SettingsPageState extends State<SettingsPage> {
                   }
                   setState(() {});
                 }),
-          )
+          ),
+          /*RaisedButton(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
+              child: Text('Borrar usuario'),
+            ),
+            textColor: Theme.of(context).primaryColorDark,
+            color: Theme.of(context).primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            onPressed: () {
+              prefs.token = "";
+              _contentProvider.token = prefs.token;
+              setState(() {});
+            },
+          )*/
         ],
       ),
     );

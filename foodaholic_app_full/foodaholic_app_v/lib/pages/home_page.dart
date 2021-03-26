@@ -1,10 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:foodaholic_app_v/models/user_model.dart';
 import 'package:foodaholic_app_v/pages/settings_page.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
+import 'package:foodaholic_app_v/utils/preferences.dart';
 import 'package:foodaholic_app_v/utils/utils.dart';
 import 'package:foodaholic_app_v/widgets/information_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
@@ -12,6 +13,7 @@ import 'package:foodaholic_app_v/widgets/home_widget.dart';
 import 'package:foodaholic_app_v/widgets/list_sqlite_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile/profile_widget.dart';
 import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -21,7 +23,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  final prefs = new Preferences();
+  User currentUser;
+    @override
+  void initState() {
+    super.initState();
+    _configFCM();
+    _getUserValues();
+  }
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   
     _getContent(Map<dynamic, dynamic> message) {
@@ -114,7 +123,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex=index;
     });
-    _configFCM();
   }
 
   @override
@@ -126,11 +134,17 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         
         children: <Widget>[
-          
+
           new UserAccountsDrawerHeader(
             
               accountName: Text("Victor Cuyo",),
-              accountEmail: Text("vhcuyo@espe.edu.ec"),
+              accountEmail: Container(
+                  margin: EdgeInsets.only(bottom: 14.0),
+                  child: Text(currentUser == null
+                      ? ""
+                      : currentUser.name == null
+                          ? currentUser.email
+                          : currentUser.name)),
             decoration: BoxDecoration( 
               
               image: DecorationImage(
@@ -295,7 +309,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  
+    _getUserValues() {
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(prefs.token);
+    print(decodedToken);
+    currentUser = User.fromJsonMap(decodedToken);
+    setState(() {});
+  }
 }
 
 

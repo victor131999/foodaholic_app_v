@@ -23,4 +23,11 @@ class Preferences {
   set mode(bool value) {
     _prefs.setBool('mode', value);
   }
+    get token {
+    return _prefs.getString('token') ?? "";
+  }
+
+  set token(String value) {
+    _prefs.setString('token', value);
+  }
 }
