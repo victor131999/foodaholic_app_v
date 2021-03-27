@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/models/user_model.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
@@ -17,8 +18,8 @@ class FormReportWidget extends StatefulWidget {
 }
 
 class _FormReportWidgetState extends State<FormReportWidget> {
-  //CollectionReference reportsCollection =
-    //  FirebaseFirestore.instance.collection('Reports');
+  CollectionReference reportsCollection =
+      FirebaseFirestore.instance.collection('Reports');
 
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -77,7 +78,7 @@ class _FormReportWidgetState extends State<FormReportWidget> {
                       _getFieldMessage(),
                       _getTypesReport(),
                       _getSubmitButton(),
-                     // _getSubmitSDKButton()
+                      _getSubmitSDKButton()
                     ]))
               ])),
           SizedBox(height: 25.0)
@@ -139,7 +140,7 @@ class _FormReportWidgetState extends State<FormReportWidget> {
         ));
   }
 
- /* Widget _getSubmitSDKButton() {
+  Widget _getSubmitSDKButton() {
     return Container(
         color: Theme.of(context).buttonColor,
         margin: EdgeInsets.symmetric(vertical: 20.0),
@@ -152,7 +153,7 @@ class _FormReportWidgetState extends State<FormReportWidget> {
                 onPressed: _onSaving ? null : _submitSDKForm)
           ],
         ));
-  }*/
+  }
 
   Widget _getImageButtons() {
     return Container(
@@ -198,7 +199,7 @@ class _FormReportWidgetState extends State<FormReportWidget> {
     });
   }
 
-  /*_submitSDKForm() async {
+  _submitSDKForm() async {
     if (!formKey.currentState.validate()) return;
 
     _report.user = User.fromJsonMap(JwtDecoder.decode(prefs.token)).email;
@@ -227,7 +228,7 @@ class _FormReportWidgetState extends State<FormReportWidget> {
         });
       }
     });
-  }*/
+  }
 
   _showImage() {
     if (_image != null) {
