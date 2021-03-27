@@ -7,12 +7,13 @@ import 'package:foodaholic_app_v/pages/settings_page.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
 import 'package:foodaholic_app_v/utils/preferences.dart';
 import 'package:foodaholic_app_v/utils/utils.dart';
+import 'package:foodaholic_app_v/widgets/details_widget.dart';
 import 'package:foodaholic_app_v/widgets/information_widget.dart';
 import 'package:foodaholic_app_v/widgets/form_report_widget.dart';
 import 'package:foodaholic_app_v/widgets/home_widget.dart';
 import 'package:foodaholic_app_v/widgets/list_sqlite_widget.dart';
 import 'package:foodaholic_app_v/widgets/profile/profile_widget.dart';
-import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
+//import 'package:foodaholic_app_v/widgets/details_menu_widget.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class HomePage extends StatefulWidget {
@@ -100,8 +101,8 @@ class _HomePageState extends State<HomePage> {
       key: PageStorageKey('Home'),
       
     ),
-    MainWidget(
-      key: PageStorageKey('main'),
+    DetailsWidget(
+      key: PageStorageKey('Menu'),
     ),
     FormReportWidget(
       key: PageStorageKey('FormReport'),
