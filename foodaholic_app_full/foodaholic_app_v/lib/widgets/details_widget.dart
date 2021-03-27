@@ -26,8 +26,8 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             backgroundColor: ThemeMain().primaryAccent,
               bottom: TabBar(
             tabs: [
-              Tab(text: "REST", icon: Icon(Icons.cloud_circle_rounded)),
-              Tab(text: "SDK", icon: Icon(Icons.book_online))
+              Tab(text: "Menus", icon: Icon(Icons.food_bank)),
+              Tab(text: "Combos", icon: Icon(Icons.fastfood)),
             ],
           )),
           body: TabBarView(

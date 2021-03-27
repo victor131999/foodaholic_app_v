@@ -19,12 +19,14 @@ class Combo {
   String fusion;
   String cost;
   String image;
+  String description;
 
   Combo(
       {this.idCombo,
       this.fusion,
       this.cost,
       this.image,
+      this.description,
       });
 
   Combo.fromJsonMap(Map<dynamic, dynamic> json) {
@@ -33,6 +35,7 @@ class Combo {
       fusion = json['fusion'];
       cost = json['cost'];
       image = json['image'];
+      description = json['description'];
     }
   }
 }
