@@ -1,23 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:foodaholic_app_v/pages/home_page.dart';
-import 'package:foodaholic_app_v/pages/register_page.dart';
+import 'package:foodaholic_app_v/pages/login_page.dart';
 import 'package:foodaholic_app_v/providers/provider_bloc.dart';
 import 'package:foodaholic_app_v/providers/user_provider.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
 import 'package:foodaholic_app_v/utils/utils.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key key}) : super(key: key);
+class RegisterPageInit extends StatelessWidget {
+  RegisterPageInit({Key key}) : super(key: key);
   final userProvider = new UserProvider();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  final List<Widget> _pages = [
-  RegisterPageInit(
-      key: PageStorageKey('Register'),
-      
-    ),
-  ];
-
-
+  
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +52,7 @@ class LoginPage extends StatelessWidget {
               child: Column(children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 25.0),
-                  child: Text('Inicio de sesión',
+                  child: Text('Registro de usuario',
                       style: Theme.of(context)
                           .textTheme
                           .headline6
@@ -72,25 +66,6 @@ class LoginPage extends StatelessWidget {
                 _getSubmit(bloc),
                 SizedBox(height: 25.0),
 
-                Ink(
-                  child: new ListTile(
-                    title: Text('Crear una nueva cuenta',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1
-                          .copyWith(color: Theme.of(context).primaryColorDark)
-                    ),
-                    onTap: (){
-                      Navigator.of(context).pop();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => _register()
-                        )
-                      );
-                    },
-                  ),
-                ),
-
               ])),
         ],
       ),
@@ -101,7 +76,7 @@ class LoginPage extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.emailStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return TextField(
+        return TextFormField(
           decoration: InputDecoration(
               icon:
                   Icon(Icons.email, color: Theme.of(context).primaryColorDark),
@@ -118,7 +93,7 @@ class LoginPage extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.passwordStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return TextField(
+        return TextFormField(
           obscureText: true,
           decoration: InputDecoration(
               icon: Icon(Icons.lock_outline,
@@ -138,30 +113,39 @@ class LoginPage extends StatelessWidget {
         return RaisedButton(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
-              child: Text('Ingresar'),
+              child: Text('Registrarse'),
             ),
             textColor: Theme.of(context).primaryColorDark,
             color: Theme.of(context).primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.0),
             ),
-            onPressed: snapshot.hasData ? () => _submit(bloc, context) : null);
+            onPressed: snapshot.hasData ? () => {_submit(bloc.email, bloc.password),
+            Navigator.of(context).pop(),
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => _login()
+                        )
+                      )
+            } : null,
+
+        );
       },
     );
   }
 
-  _submit(LoginBloc bloc, BuildContext context) async {
-    Map info = await userProvider.login(bloc.email, bloc.password);
 
-    if (info['ok']) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
-    } else {
-      print(info['message']);
-    }
-  }
+    _submit(String email,String pass ){
+      _auth.createUserWithEmailAndPassword(email:email, password:pass);
+   }
 
-    _register() {
+    _login() {
+      final List<Widget> _pages = [
+  LoginPage(
+      key: PageStorageKey('login'),
+      
+    ),
+  ];
     return new Scaffold(
       body: Center(
         child: _pages[0]
