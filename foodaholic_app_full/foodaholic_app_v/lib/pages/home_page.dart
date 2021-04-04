@@ -216,20 +216,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          Ink(
-            color: ThemeMain().primaryfond,
-            child: new ListTile(
-              title: Text("Salir de tu cuenta"),
-              onTap: (){
-                Navigator.of(context).pop();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => salir()
-                  )
-                );
-              },
-            ),
-          ),
         ],
       ) ,
     ),
@@ -299,14 +285,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  salir() {
-    return new Scaffold(
-      appBar: AppBar(title: new Text("salir"),backgroundColor: Colors.yellow),
-      body: Center(
-        child: Text("salir")
-      )
-    );
-  }
   favorites() {
     return new Scaffold(
       appBar: AppBar(title: new Text("Favoritos"),backgroundColor: Colors.yellow),

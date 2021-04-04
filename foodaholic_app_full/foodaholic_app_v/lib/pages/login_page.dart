@@ -3,17 +3,19 @@ import 'package:foodaholic_app_v/pages/home_page.dart';
 import 'package:foodaholic_app_v/pages/register_page.dart';
 import 'package:foodaholic_app_v/providers/provider_bloc.dart';
 import 'package:foodaholic_app_v/providers/user_provider.dart';
+import 'package:foodaholic_app_v/themes/load_theme.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
-import 'package:foodaholic_app_v/utils/utils.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key key}) : super(key: key);
   final userProvider = new UserProvider();
 
   final List<Widget> _pages = [
-  RegisterPageInit(
+    RegisterPageInit(
       key: PageStorageKey('Register'),
-      
+    ),
+    LoadTheme(
+      key: PageStorageKey('load'),
     ),
   ];
 
@@ -27,7 +29,7 @@ class LoginPage extends StatelessWidget {
         backgroundColor: ThemeMain().primaryfond,
         body: Stack(
           children: [
-            BackgroundPage.getBackground(context),
+            load(),
             _getFormLogin(context),
           ],
         ),
@@ -165,6 +167,14 @@ class LoginPage extends StatelessWidget {
     return new Scaffold(
       body: Center(
         child: _pages[0]
+      )
+    );
+  }
+
+    load() {
+    return new Scaffold(
+      body: Center(
+        child: _pages[1]
       )
     );
   }

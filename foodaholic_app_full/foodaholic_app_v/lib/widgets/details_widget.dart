@@ -19,20 +19,22 @@ class _DetailsWidgetState extends State<DetailsWidget> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          backgroundColor: ThemeMain().primaryfond,
-          appBar: AppBar(
-            backgroundColor: ThemeMain().primaryAccent,
-              bottom: TabBar(
-            tabs: [
-              Tab(text: "Menus", icon: Icon(Icons.food_bank)),
-              Tab(text: "Combos", icon: Icon(Icons.fastfood)),
-            ],
-          )),
-          body: TabBarView(
-            children: [MenusRestWidget(), MenusSDKWidget()],
-          ),
-        ));
+            length: 2,
+            child: Scaffold(
+              backgroundColor: ThemeMain().primaryfond,
+              appBar: AppBar(
+                backgroundColor: ThemeMain().primaryAccent,
+                  bottom: TabBar(
+                    tabs: [
+                      Tab(text: "Menus", icon: Icon(Icons.food_bank)),
+                      Tab(text: "Combos", icon: Icon(Icons.fastfood)),
+                    ],
+                  )
+              ),
+              body: TabBarView(
+                children: [MenusRestWidget(), MenusSDKWidget()],
+              ),
+            )
+    );
   }
 }

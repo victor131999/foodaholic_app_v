@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:foodaholic_app_v/pages/login_page.dart';
 import 'package:foodaholic_app_v/providers/provider_bloc.dart';
 import 'package:foodaholic_app_v/providers/user_provider.dart';
+import 'package:foodaholic_app_v/themes/load_theme.dart';
 import 'package:foodaholic_app_v/themes/theme_main.dart';
-import 'package:foodaholic_app_v/utils/utils.dart';
 
 class RegisterPageInit extends StatelessWidget {
   RegisterPageInit({Key key}) : super(key: key);
   final userProvider = new UserProvider();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  
+    final List<Widget> _pages = [
+    LoadTheme(
+      key: PageStorageKey('load'),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class RegisterPageInit extends StatelessWidget {
         backgroundColor: ThemeMain().primaryfond,
         body: Stack(
           children: [
-            BackgroundPage.getBackground(context),
+            load(),
             _getFormLogin(context),
           ],
         ),
@@ -65,7 +69,24 @@ class RegisterPageInit extends StatelessWidget {
                 SizedBox(height: 25.0),
                 _getSubmit(bloc),
                 SizedBox(height: 25.0),
-
+                Ink(
+                  child: new ListTile(
+                    title: Text('Regresar',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          .copyWith(color: Theme.of(context).primaryColorDark)
+                    ),
+                    onTap: (){
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => _login()
+                        )
+                      );
+                    },
+                  ),
+                ),
               ])),
         ],
       ),
@@ -152,5 +173,15 @@ class RegisterPageInit extends StatelessWidget {
       )
     );
   }
+
+      load() {
+    return new Scaffold(
+      body: Center(
+        child: _pages[0]
+      )
+    );
+  }
+
+
 
 }
